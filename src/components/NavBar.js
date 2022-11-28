@@ -13,7 +13,7 @@ const NavBar = () => {
       variant="dark"
       fixed="top"
     >
-      <Container>
+      <Container >
         <NavLink to="/">
           <h1>WeShare</h1>
         </NavLink>
