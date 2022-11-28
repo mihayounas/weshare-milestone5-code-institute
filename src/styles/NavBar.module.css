@@ -1,3 +1,11 @@
 .NavBar h1 {
     font-family: 'Lobster', cursive,  sans-serif;
 }
+
+  .NavLink {
+    padding: 5px;
+  }
+  
+  .Active i {
+    color:aliceblue
+  }
