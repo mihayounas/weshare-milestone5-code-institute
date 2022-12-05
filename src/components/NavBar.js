@@ -7,9 +7,14 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 const NavBar = () => {
   const currentUser = useCurrentUser();
 
-  const addPostIcon = {
-
-  }
+  const addPostIcon = (
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/post/create">
+      <i className="fas fa-sign-in-alt"></i>Create New Post
+    </NavLink>
+  )
 
   const loggedInIcons = <>{currentUser?.username}</>;
   const loggedOutIcons = (
@@ -33,7 +38,7 @@ const NavBar = () => {
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
         <NavLink to="/">
-          <Navbar.Brand>
+          <Navbar.Brand id="logo">
             <h1>WeShare</h1>
           </Navbar.Brand>
         </NavLink>
@@ -41,6 +46,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
+
             <NavLink
               exact
               className={styles.NavLink}
@@ -49,15 +55,16 @@ const NavBar = () => {
             >
               <i className="fas fa-home"></i>Home
             </NavLink>
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/news">
+              <i class="fa-regular fa-newspaper"></i>News
+            </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
 
           </Nav>
-          <NavLink
-            className={styles.NavLink}
-            activeClassName={styles.Active}
-            to="/news">
-            <i class="fa-regular fa-newspaper"></i>News
-          </NavLink>
         </Navbar.Collapse>
       </Container>
       <Nav>

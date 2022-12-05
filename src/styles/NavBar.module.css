@@ -1,20 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
+
 .NavBar {
   border: 1px solid #dadadf;
-  background-color: rgb(207, 218, 251);
+  background-color: rgb(56, 103, 246);
   height: 80px ;
 }
-.NavBar h1, .NavLink{
-  color:black;
-  font-family: 'Dancing Script', serif;
+.NavLink{
+  color:white;
   text-shadow: 4px 4px 4px #aaa;
 }
 .NavBar h1{
-font-size: 50px;
+  font-family: 'Shrikhand', serif;
+  color:white;
+  font-size:40px;
+  
 }
 .NavLink {
   padding: 5px;
-  font-size:20px;
- 
+  font-size:18px;
+  
 }
 
 .Active i {
