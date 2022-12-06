@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -13,10 +14,10 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
-    const setCurrentUser = useContext(SetCurrentUserContext);
+    const setCurrentUser = useSetCurrentUser();
 
     const [signInData, setSignInData] = useState({
         username: "",
@@ -27,6 +28,7 @@ function SignInForm() {
     const [errors, setErrors] = useState({});
 
     const history = useHistory();
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,8 +62,7 @@ function SignInForm() {
                                 name="username"
                                 className={styles.Input}
                                 value={username}
-                                onChange={handleChange}
-                            />
+                                onChange={handleChange} />
                         </Form.Group>
                         {errors.username?.map((message, idx) => (
                             <Alert key={idx} variant="warning">
