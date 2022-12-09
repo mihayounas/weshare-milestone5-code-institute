@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://weshare-api-app.herokuapp.com/";
+axios.defaults.baseURL = "https://weshare-media.herokuapp.com";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
