@@ -14,10 +14,8 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 
-
 function PostCreateForm() {
 
-    const [errors, setErrors] = useState({});
     const [postData, setPostData] = useState({
         title: "",
         content: "",
@@ -110,11 +108,12 @@ function PostCreateForm() {
                                     />
                                 </Form.Label>
                             )}
-
-                            <Form.File
-                                id="image-upload"
-                                accept="image/*"
+                            <Form.Control
+                                type='file'
+                                id='image-file'
+                                label='Choose File'
                                 onChange={handleChangeImage}
+
                             />
                         </Form.Group>
                         <div className="d-md-none">{textFields}</div>

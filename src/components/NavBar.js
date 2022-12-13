@@ -35,7 +35,6 @@ const NavBar = () => {
       <i className="far fa-plus-square"></i>Add post
     </NavLink>
   );
-
   const loggedInIcons = (
     <>
       <NavLink
@@ -93,11 +92,11 @@ const NavBar = () => {
 
         {currentUser && addPostIcon}
 
-        <Navbar.Toggle 
+        <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav" />
-          
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
 
@@ -119,12 +118,14 @@ const NavBar = () => {
             {currentUser ? loggedInIcons : loggedOutIcons}
 
           </Nav>
+          
+
         </Navbar.Collapse>
       </Container>
       <Nav>
-        <FormControl type="text" placeholder="Search" />
-        <Button type="submit">Go</Button>
-      </Nav>
+            <FormControl type="text" placeholder="Search" />
+            <Button type="submit">Go</Button>
+          </Nav>
     </Navbar>
   );
 };
