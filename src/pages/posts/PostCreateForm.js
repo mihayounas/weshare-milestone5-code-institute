@@ -15,6 +15,7 @@ import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 
 function PostCreateForm() {
+    const [errors, setErrors] = useState({});
 
     const [postData, setPostData] = useState({
         title: "",
@@ -39,7 +40,6 @@ function PostCreateForm() {
             });
         }
     };
-
 
     const textFields = (
         <div className="text-center">
@@ -108,12 +108,11 @@ function PostCreateForm() {
                                     />
                                 </Form.Label>
                             )}
-                            <Form.Control
-                                type='file'
-                                id='image-file'
-                                label='Choose File'
-                                onChange={handleChangeImage}
 
+                            <Form.File
+                                id="image-upload"
+                                accept="image/*"
+                                onChange={handleChangeImage}
                             />
                         </Form.Group>
                         <div className="d-md-none">{textFields}</div>
