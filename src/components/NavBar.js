@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav, FormControl, Button } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -118,14 +118,11 @@ const NavBar = () => {
             {currentUser ? loggedInIcons : loggedOutIcons}
 
           </Nav>
-          
+
 
         </Navbar.Collapse>
       </Container>
-      <Nav>
-            <FormControl type="text" placeholder="Search" />
-            <Button type="submit">Go</Button>
-          </Nav>
+
     </Navbar>
   );
 };
