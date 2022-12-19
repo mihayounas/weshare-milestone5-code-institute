@@ -17,17 +17,16 @@ import { axiosReq } from "../../api/axiosDefaults";
 import {
     useProfileData,
     useSetProfileData,
-} from "../../contexts/ ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+} from "../../contexts/ProfileDataContext";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const currentUser = useCurrentUser();
     const { id } = useParams();
     const setProfileData = useSetProfileData();
-    const { pageProfile } = useProfileData();
-    const [profile] = pageProfile.results;
-    const is_owner = currentUser?.username === profile?.owner;
+
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,49 +50,16 @@ function ProfilePage() {
         <>
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
-                    <Image
-                        className={styles.ProfileImage}
-                        roundedCircle
-                        src={profile?.image}
-                    />
+                    <p>Image</p>
                 </Col>
                 <Col lg={6}>
-                    <h3 className="m-2">{profile?.owner}</h3>
-                    <Row className="justify-content-center no-gutters">
-                        <Col xs={3} className="my-2">
-                            <div>{profile?.posts_count}</div>
-                            <div>posts</div>
-                        </Col>
-                        <Col xs={3} className="my-2">
-                            <div>{profile?.followers_count}</div>
-                            <div>followers</div>
-                        </Col>
-                        <Col xs={3} className="my-2">
-                            <div>{profile?.following_count}</div>
-                            <div>following</div>
-                        </Col>
-                    </Row>
+                    <h3 className="m-2">Profile username</h3>
+                    <p>Profile stats</p>
                 </Col>
                 <Col lg={3} className="text-lg-right">
-                    {currentUser &&
-                        !is_owner &&
-                        (profile?.following_id ? (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                                onClick={() => { }}
-                            >
-                                unfollow
-                            </Button>
-                        ) : (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => { }}
-                            >
-                                follow
-                            </Button>
-                        ))}
+                    <p>Follow button</p>
                 </Col>
-                {profile?.content && <Col className="p-3">{profile.content}</Col>}
+                <Col className="p-3">Profile content</Col>
             </Row>
         </>
     );
