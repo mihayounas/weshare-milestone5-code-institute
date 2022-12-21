@@ -12,39 +12,14 @@ import btnStyles from "../../styles/Button.module.css";
 
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
-import {
-    useProfileData,
-    useSetProfileData,
-} from "../../contexts/ProfileDataContext";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const currentUser = useCurrentUser();
-    const { id } = useParams();
-    const setProfileData = useSetProfileData();
-
-
-
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [{ data: pageProfile }] = await Promise.all([
-                    axiosReq.get(`/profiles/${id}/`),
-                ]);
-                setProfileData((prevState) => ({
-                    ...prevState,
-                    pageProfile: { results: [pageProfile] },
-                }));
-                setHasLoaded(true);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchData();
-    }, [id, setProfileData]);
+        setHasLoaded(true);
+    }, [])
 
     const mainProfile = (
         <>
