@@ -46,9 +46,6 @@ function PostsPage({ message, filter = "" }) {
         };
     }, [filter, query, pathname]);
 
-
-
-
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -66,6 +63,7 @@ function PostsPage({ message, filter = "" }) {
                         placeholder="Search posts"
                     />
                 </Form>
+
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
