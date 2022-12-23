@@ -1,13 +1,15 @@
 import React from "react";
 
 
-const News = ({ }) => {
+const News = ({ newsItem }) => {
+
 
 
   return (
     
    <div>
-    <h2>hey look its news</h2>
+    <h2>{newsItem.title}</h2>
+    <p>{newsItem.description}</p>
    </div>
   );
 };
