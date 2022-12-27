@@ -10,7 +10,7 @@ import {
 import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-import NewsPage from "../pages/news/NewsPage";
+
 
 const NavBar = () => {
   const currentUser = useCurrentUser();

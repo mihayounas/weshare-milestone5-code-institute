@@ -3,11 +3,13 @@ import News from "./News";
 import { Col, Row } from 'react-bootstrap';
 
 function NewsPage() {
-    const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&country=gb&language=en&category=food`
+
+
 
     const [news, setNews] = useState([])
 
     useEffect(() => {
+        const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&country=gb&language=en&category=food`
         const getNews = async () => {
             const response = await fetch(url)
             const result = await response.json()
