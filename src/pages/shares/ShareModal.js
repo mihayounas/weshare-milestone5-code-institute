@@ -1,22 +1,29 @@
-import React, { Fragment } from "react";
+import React from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-function ShareModal({ modalVisible, shareData, handleClose }) {
+
+function ShareModal() {
     return (
-        <>
-            <div className={`${"share-modal"} ${modalVisible ? "opened" : "closed"}`}>
-                <section className="modal-header">
-                    <h3 className="modal-title">Share Via</h3>
-                    <button className="close-button" onClick={() => handleClose(false)}>
-                        &times;
-                    </button>
-                </section>
-               
-                <section className="modal-footer">
-                    <div className="modal-footer-link">{shareData.url}</div>
-                    <button className="modal-footer-button">Copy Link</button>
-                </section>
-            </div>
-        </>
-    );
+        <div
+          className="modal show"
+          style={{ display: 'block', position: 'initial' }}
+        >
+          <Modal.Dialog>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal title</Modal.Title>
+            </Modal.Header>
+    
+            <Modal.Body>
+              <p>Modal body text goes here.</p>
+            </Modal.Body>
+    
+            <Modal.Footer>
+              <Button variant="secondary">Close</Button>
+              <Button variant="primary">Save changes</Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </div>
+      );
 }
 export default ShareModal;
