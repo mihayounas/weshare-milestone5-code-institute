@@ -7,6 +7,7 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
+
 const Post = (props) => {
   const {
     id,
@@ -73,6 +74,25 @@ const Post = (props) => {
     }
   };
 
+  const handleShare = async () => {
+    try {
+      const { data } = await axiosRes.post("/shared/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, shared_count: post.shared_count + 1, shared_id: data.id }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+
+
+
   return (
     <Card className={styles.Post}>
       <Card.Body>
@@ -87,6 +107,7 @@ const Post = (props) => {
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
+                handleShare={handleShare}
               />}
           </div>
         </Media>

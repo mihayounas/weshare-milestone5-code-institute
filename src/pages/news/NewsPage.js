@@ -3,9 +3,6 @@ import News from "./News";
 import { Col, Row } from 'react-bootstrap';
 
 function NewsPage() {
-
-
-
     const [news, setNews] = useState([])
 
     useEffect(() => {
@@ -28,6 +25,7 @@ function NewsPage() {
                 </Col>
             ))}
         </Row>
+        
 
     );
 }
