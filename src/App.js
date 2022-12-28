@@ -15,7 +15,7 @@ import NewsPage from "./pages/news/NewsPage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
-import Share from "./pages/shares/Share";
+
 
 
 
@@ -72,7 +72,6 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-          <Route exact path="/posts/:id/shares" render={() => <Share />} />
           <Route exact path="/news" render={() => <NewsPage />} />
           <Route
             exact
@@ -89,11 +88,7 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route
-            exact
-            path="/posts/:id/share"
-            render={() => <Share />}
-          />
+          
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

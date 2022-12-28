@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ShareModal from "../../pages/shares/ShareModal"
 
 
 const Post = (props) => {
@@ -21,13 +22,13 @@ const Post = (props) => {
     content,
     image,
     updated_at,
-    postPage,
     setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [shareModalVisible, setShareModalVisible] = useState(false)
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -74,8 +75,8 @@ const Post = (props) => {
     }
   };
 
-  const handleShare = async () => {
-    history.push(`/posts/${id}/shares`);
+  const handleShareModal = async () => {
+    setShareModalVisible(true)
   }
 
   return (
@@ -88,12 +89,12 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage &&
-              <MoreDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-                handleShare={handleShare}
-              />}
+            <MoreDropdown
+              isOwner={is_owner}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleShare={handleShareModal}
+            />
           </div>
         </Media>
       </Card.Body>
@@ -134,6 +135,14 @@ const Post = (props) => {
           {comments_count}
         </div>
       </Card.Body>
+      <ShareModal
+        shareModalVisible={shareModalVisible}
+        setShareModalVisible={setShareModalVisible}
+        title={title}
+        content={content}
+        owner={owner}
+        id={id}
+      />
     </Card>
   );
 };

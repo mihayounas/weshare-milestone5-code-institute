@@ -106,6 +106,24 @@ function ProfilePage() {
                                 follow
                             </Button>
                         ))}
+                       
+                        {currentUser &&
+                        !is_owner &&
+                        (profile?.following_id ? (
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                                onClick={() => handleUnfollow(profile)}
+                            >
+                                Unblock User
+                            </Button>
+                        ) : (
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Black}`}
+                                onClick={() => handleFollow(profile)}
+                            >
+                                Block User
+                            </Button>
+                        ))}
                 </Col>
                 {profile?.content && <Col className="p-3">{profile.content}</Col>}
             </Row>

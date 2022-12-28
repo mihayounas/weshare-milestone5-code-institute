@@ -14,16 +14,11 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     />
 ));
 
-export const MoreDropdown = ({ handleEdit, handleDelete, handleShare }) => {
-    return (
-        <Dropdown className="ml-auto" drop="left">
-            <Dropdown.Toggle as={ThreeDots} />
-
-            <Dropdown.Menu
-                className="text-center"
-                popperConfig={{ strategy: "fixed" }}
-            >
-                <Dropdown.Item
+export const MoreDropdown = ({ handleEdit, handleDelete, handleShare, isOwner }) => {
+    const renderOwnerActions = () => {
+        if (isOwner){
+            return <React.Fragment>
+                 <Dropdown.Item
                     className={styles.DropdownItem}
                     onClick={handleEdit}
                     aria-label="edit"
@@ -37,6 +32,18 @@ export const MoreDropdown = ({ handleEdit, handleDelete, handleShare }) => {
                 >
                     <i className="fas fa-trash-alt" />
                 </Dropdown.Item>
+            </React.Fragment>
+        }
+    }
+    return (
+        <Dropdown className="ml-auto" drop="left">
+            <Dropdown.Toggle as={ThreeDots} />
+
+            <Dropdown.Menu
+                className="text-center"
+                popperConfig={{ strategy: "fixed" }}
+            >
+               {renderOwnerActions()}
                 <Dropdown.Item
                     className={styles.DropdownItem}
                     onClick={handleShare}
