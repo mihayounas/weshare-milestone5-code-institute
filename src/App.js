@@ -15,6 +15,7 @@ import NewsPage from "./pages/news/NewsPage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import CreateNewStory from "./pages/stories/CreateNewStory";
 
 
 
@@ -88,7 +89,11 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          
+          <Route
+            exact
+            path="/stories/create"
+            render={() => <CreateNewStory />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
