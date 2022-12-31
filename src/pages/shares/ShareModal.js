@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { axiosRes } from "../../api/axiosDefaults";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 
-function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id }) {
-  const currentUser = useCurrentUser();
+function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, image }) {
+  const [share, setShare] = useState();
   const sharePost = async () => {
     try {
-      const { data } = await axiosRes.post(`/posts/${id}/shares/`, { post: id });
-      setShareModalVisible(false)
+      const { data } = await axiosRes.post("/shares/", { share: id });
+
     } catch (err) {
       console.log(err);
     }
-  }
+  };
+
   return (
     <Modal
       show={shareModalVisible}
@@ -25,8 +25,8 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id }
       </Modal.Header>
 
       <Modal.Body>
-        <p>{post}</p>
-        <p>{owner}</p>
+        <p>{title}</p>
+        <p>{owner} </p>
       </Modal.Body>
 
       <Modal.Footer>
@@ -34,7 +34,8 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id }
           onClick={() => setShareModalVisible(false)}
         >Cancel</Button>
         <Button variant="primary"
-          onClick={sharePost}>Share Post</Button>
+          onClick={sharePost}
+        >Share</Button>
       </Modal.Footer>
 
     </Modal>

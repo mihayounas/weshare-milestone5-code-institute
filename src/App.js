@@ -16,6 +16,8 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateNewStory from "./pages/stories/CreateNewStory";
+import SideBar from "./components/SideBar";
+import MyPosts from "./pages/mydetails/MyPosts";
 
 
 
@@ -27,7 +29,10 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+
       <Container className={styles.Main}>
+        <SideBar />
+
         <Switch>
           <Route
             exact
@@ -74,6 +79,7 @@ function App() {
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/news" render={() => <NewsPage />} />
+          <Route exact path="/myposts" render={() => <MyPosts />} />
           <Route
             exact
             path="/profiles/:id/edit/username"
