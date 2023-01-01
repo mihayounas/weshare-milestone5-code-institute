@@ -18,6 +18,8 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateNewStory from "./pages/stories/CreateNewStory";
 import SideBar from "./components/SideBar";
 import MyPosts from "./pages/mydetails/MyPosts";
+import ViewCreatedStory from "./pages/stories/ViewCreatedStory"
+
 
 
 
@@ -99,6 +101,11 @@ function App() {
             exact
             path="/stories/create"
             render={() => <CreateNewStory />}
+          />
+          <Route
+            exact
+            path="/stories/:id"
+            render={() => <ViewCreatedStory />}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
