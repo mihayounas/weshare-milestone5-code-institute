@@ -1,21 +1,17 @@
 .sidebar {
     grid-row: 2;
-    grid-column: 1;
     display: flex;
-    flex-direction: column;
-    float:left;
-    text-align: left;
+    flex-direction: column; 
+    height: calc(100vh - 50px);
+    margin-right: 100px;
+    margin-left: -60px;
    
 }
 
 .sidebar > a {
-    background-color: white;
-    color: #445261;
-    border: white solid 1px;
     padding: 10px 0;
     padding-left: 10px;
-    margin-left: -60px;
-    margin-right: 90px;
+  
 }
 
 .sidebar > a:hover{
@@ -23,3 +19,20 @@
     background-color: #e6ecf0;
     border: white solid 1px;
 }
+
+@media screen and (max-width: 1100px) {
+    .sidebar{
+    font-size: small;
+    }
+}
+@media screen and (max-width: 820px) {
+    .sidebar, .sidebar > i{
+    font-size: smaller;
+    }
+}
+@media screen and (max-width: 900px) {
+    .sidebar, .sidebar > i{
+    font-size: small;
+    }
+}
+

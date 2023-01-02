@@ -30,11 +30,11 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <NavBar />
+
 
       <Container className={styles.Main}>
+        <NavBar />
         <SideBar />
-
         <Switch>
           <Route
             exact

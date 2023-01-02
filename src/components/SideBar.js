@@ -1,14 +1,18 @@
 import React from 'react';
 import css from "../styles/Sidebar.module.css";
 
+
 function SideBar() {
     return (
         <div className={css.sidebar}>
-            <a href="#." target="_blank">My Stories</a>
-            <a href="/myposts" >My Posts</a>
-            <a href="#." target="_blank">My Friends</a>
+            <a href="/feed" ><i className="fa fa-rss"></i>Feed</a>
+            <a href="/liked"><i className="fas fa-heart"></i>Liked</a>
+            <a href="#." target="_blank"><i className="fa fa-address-book-o"></i>Friends</a>
+            <a href="#." target="_blank"><i className="fa fa-calendar-o" ></i>Events</a>
+            <a href="#." target="_blank"><i className="fa fa-suitcase"></i>Jobs</a>
+            <a href="#." target="_blank"><i className="fa fa-play-circle"></i>Videos</a>
         </div>
     )
 }
 
-export default SideBar
+export default SideBar;

@@ -9,6 +9,8 @@
   }
   .Main {
     padding-top: 81px;
+    display:flex;
+    width:100%;
   }
   
   .Content {
