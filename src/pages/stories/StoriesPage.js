@@ -66,9 +66,9 @@ function StoriesPage({ message, filter = "" }) {
                 {hasLoaded ? (
                     <>
                         {stories.results.length ? (
-                            <InfiniteScroll
+                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginTop: '30px', gap: '20px', width: '100%' }}
                                 children={stories.results.map((post) => (
-                                    <Story key={stories.id} {...post} setPosts={setStories} />
+                                    <Story key={post.id} {...post} setPosts={setStories} />
                                 ))}
                                 dataLength={stories.results.length}
                                 loader={<Asset spinner />}

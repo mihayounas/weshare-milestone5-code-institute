@@ -22,7 +22,7 @@ function ViewCreatedStory() {
         const handleMount = async () => {
             try {
                 const [{ data: stories }] = await Promise.all([
-                    axiosReq.get(`/stories/${id}`),
+                    axiosReq.get(`/stories`),
                 ]);
                 setStories({ results: [stories] });
             } catch (err) {

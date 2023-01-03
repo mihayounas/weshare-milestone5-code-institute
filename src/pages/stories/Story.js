@@ -39,7 +39,7 @@ const Story = (props) => {
     };
 
     return (
-        <Card className={styles.Post} style={{ width: '20rem', marginTop: '30px' }}>
+        <Card className={styles.Post} style={{ width: '20rem',  }}>
             <Card.Body>
                 <Media className="align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
