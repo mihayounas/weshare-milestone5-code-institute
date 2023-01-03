@@ -18,7 +18,9 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateNewStory from "./pages/stories/CreateNewStory";
 import SideBar from "./components/SideBar";
 import MyPosts from "./pages/mydetails/MyPosts";
-import ViewCreatedStory from "./pages/stories/ViewCreatedStory"
+import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
+import StoryEditForm from "./pages/stories/StoryEditForm";
+import StoryBar from "./components/StoryBar";
 
 
 
@@ -31,10 +33,11 @@ function App() {
   return (
     <div className={styles.App}>
 
-
+      <NavBar />
+      <Container> <StoryBar /></Container>
       <Container className={styles.Main}>
-        <NavBar />
         <SideBar />
+
         <Switch>
           <Route
             exact
@@ -106,6 +109,11 @@ function App() {
             exact
             path="/stories/:id"
             render={() => <ViewCreatedStory />}
+          />
+          <Route
+            exact
+            path="/stories/:id/edit"
+            render={() => <StoryEditForm />}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
