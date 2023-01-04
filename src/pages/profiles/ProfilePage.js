@@ -32,7 +32,7 @@ function ProfilePage() {
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
-    const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
+    const { setProfileData, handleFollow, handleUnfollow, handleBlock } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
@@ -118,7 +118,7 @@ function ProfilePage() {
                         ) : (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => handleFollow(profile)}
+                                onClick={() => handleBlock(profile)}
                             >
                                 Block User
                             </Button>

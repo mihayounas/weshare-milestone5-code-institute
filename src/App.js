@@ -21,6 +21,7 @@ import MyPosts from "./pages/mydetails/MyPosts";
 import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
 import StoryEditForm from "./pages/stories/StoryEditForm";
 import StoryBar from "./components/StoryBar";
+import StoriesPage from "./pages/stories/StoriesPage";
 
 
 
@@ -107,9 +108,15 @@ function App() {
           />
           <Route
             exact
+            path="/stories/"
+            render={() => <StoriesPage />}
+          />
+          <Route
+            exact
             path="/stories/:id"
             render={() => <ViewCreatedStory />}
           />
+          
           <Route
             exact
             path="/stories/:id/edit"
