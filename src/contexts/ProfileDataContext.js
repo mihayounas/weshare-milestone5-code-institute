@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { followHelper, unfollowHelper, blockedHelper } from "../utils/utils";
+import { followHelper, unfollowHelper, blockedHelper, unblockHelper } from "../utils/utils";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -66,6 +66,28 @@ export const ProfileDataProvider = ({ children }) => {
       console.log(err);
     }
   };
+  const handleUnblock = async (clickedProfile) => {
+    try {
+      await axiosRes.delete(`/blocked/${clickedProfile.following_id}/`);
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: {
+          results: prevState.pageProfile.results.map((profile) =>
+            unblockHelper(profile, clickedProfile)
+          ),
+        },
+        popularProfiles: {
+          ...prevState.popularProfiles,
+          results: prevState.popularProfiles.results.map((profile) =>
+          unblockHelper(profile, clickedProfile)
+          ),
+        },
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleUnfollow = async (clickedProfile) => {
     try {
@@ -111,7 +133,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData, handleFollow, handleUnfollow, handleBlock }}
+        value={{ setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock }}
       >
         {children}
       </SetProfileDataContext.Provider>

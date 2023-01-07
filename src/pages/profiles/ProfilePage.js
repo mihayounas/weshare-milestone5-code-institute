@@ -32,7 +32,7 @@ function ProfilePage() {
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
-    const { setProfileData, handleFollow, handleUnfollow, handleBlock } = useSetProfileData();
+    const { setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
@@ -105,25 +105,26 @@ function ProfilePage() {
                                 follow
                             </Button>
                         ))}
-                       
-                        {currentUser &&
-                        !is_owner &&
-                        (profile?.following_id ? (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                                onClick={() => handleUnfollow(profile)}
-                            >
-                                Unblock User
-                            </Button>
-                        ) : (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => handleBlock(profile)}
-                            >
-                                Block User
-                            </Button>
-                        ))}
+
+
                 </Col>
+                {currentUser &&
+                    !is_owner &&
+                    (profile?.following_id ? (
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                            onClick={() => handleUnblock(profile)}
+                        >
+                            Unblock User
+                        </Button>
+                    ) : (
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Black}`}
+                            onClick={() => handleBlock(profile)}
+                        >
+                            Block User
+                        </Button>
+                    ))}
                 {profile?.content && <Col className="p-3">{profile.content}</Col>}
             </Row>
         </>
@@ -168,9 +169,11 @@ function ProfilePage() {
                     )}
                 </Container>
             </Col>
+
             <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
                 <PopularProfiles />
             </Col>
+
         </Row>
     );
 }

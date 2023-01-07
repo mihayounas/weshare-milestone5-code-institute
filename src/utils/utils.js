@@ -36,19 +36,16 @@ export const followHelper = (profile, clickedProfile, following_id) => {
 
 export const blockedHelper = (profile, clickedProfile, blocked_id) => {
     return profile.id === clickedProfile.id
-        ? // This is the profile I clicked on,
-        // update its followers count and set its following id
+        ? 
         {
             ...profile,
             blocked_count: profile.blocked_count + 1,
             blocked_id,
         }
         : profile.is_owner
-            ? // This is the profile of the logged in user
-            // update its following count
+            ? 
             { ...profile, blocked_count: profile.blocked_count + 1 }
-            : // this is not the profile the user clicked on or the profile
-            // the user owns, so just return it unchanged
+            :
             profile;
 };
 
@@ -70,6 +67,23 @@ export const unfollowHelper = (profile, clickedProfile) => {
             profile;
 };
 
+export const unblockHelper = (profile, clickedProfile) => {
+    return profile.id === clickedProfile.id
+        ? // This is the profile I clicked on,
+        // update its followers count and set its following id
+        {
+            ...profile,
+            blocked_count: profile.blocked_count - 1,
+            blocked_id: null,
+        }
+        : profile.is_owner
+            ? // This is the profile of the logged in user
+            // update its following count
+            { ...profile, blocked_count: profile.blocked_count - 1 }
+            : // this is not the profile the user clicked on or the profile
+            // the user owns, so just return it unchanged
+            profile;
+};
 export const setTokenTimestamp = (data) => {
     const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
     localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
