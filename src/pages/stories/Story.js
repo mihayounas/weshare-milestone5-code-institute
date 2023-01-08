@@ -18,6 +18,7 @@ const Story = (props) => {
         image,
         updated_at,
         setStories,
+        stories,
     } = props;
 
     const currentUser = useCurrentUser();
@@ -32,7 +33,8 @@ const Story = (props) => {
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/stories/${id}`);
-            history.goBack();
+            let filteredStories = stories.filter(story => story.id !== id)
+            setStories(filteredStories)
         } catch (err) {
             console.log(err);
         }

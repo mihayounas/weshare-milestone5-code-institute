@@ -28,7 +28,7 @@ function StoriesPage({ message, filter = "" }) {
         const fetchStories = async () => {
             try {
                 const { data } = await axiosReq.get(`/stories/?${filter}search=${query}`);
-                setStories(data);
+                setStories(data.results);
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -47,7 +47,7 @@ function StoriesPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
+            <Col className="py-2 p-0 p-lg-2" >
 
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form
@@ -65,12 +65,12 @@ function StoriesPage({ message, filter = "" }) {
 
                 {hasLoaded ? (
                     <>
-                        {stories.results.length ? (
-                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginTop: '30px', gap: '20px', width: '100%' }}
-                                children={stories.results.map((post) => (
-                                    <Story key={post.id} {...post} setPosts={setStories} />
+                        {stories.length ? (
+                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginTop: '30px', gap: '20px', maxWidth: '100vw', marginLeft: 'auto', marginRight: 'auto' }}
+                                children={stories.map((story) => (
+                                    <Story key={story.id} {...story} setStories={setStories} stories={stories} />
                                 ))}
-                                dataLength={stories.results.length}
+                                dataLength={stories.length}
                                 loader={<Asset spinner />}
                                 hasMore={!!stories.next}
                                 next={() => fetchMoreData(stories, setStories)}

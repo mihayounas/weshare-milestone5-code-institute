@@ -35,7 +35,7 @@ function App() {
     <div className={styles.App}>
 
       <NavBar />
-      <Container> <StoryBar /></Container>
+      <StoryBar />
       <Container className={styles.Main}>
         <SideBar />
 
@@ -116,7 +116,7 @@ function App() {
             path="/stories/:id"
             render={() => <ViewCreatedStory />}
           />
-          
+
           <Route
             exact
             path="/stories/:id/edit"
