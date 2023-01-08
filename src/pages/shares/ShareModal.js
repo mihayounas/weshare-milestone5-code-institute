@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 
 
-function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, image }) {
-  const [share, setShare] = useState();
+function ShareModal({ shareModalVisible, setShareModalVisible, owner, id, title, image }) {
+
   const sharePost = async () => {
-    try {
-      const { data } = await axiosRes.post("/shares/", { share: id });
+    const share = {
+      post: id,
+      owner: owner,
 
+    }
+    console.log(share)
+    try {
+      const { data } = await axiosReq.post("/shares/", share);
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
