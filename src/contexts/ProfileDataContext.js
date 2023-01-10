@@ -41,31 +41,8 @@ export const ProfileDataProvider = ({ children }) => {
       console.log(err);
     }
   };
+  
 
-  const handleBlock = async (clickedProfile) => {
-    try {
-      const { data } = await axiosRes.post("/blocked/", {
-        blocked: clickedProfile.id,
-      });
-
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            blockedHelper(profile, clickedProfile, data.id)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
-          ),
-        },
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
   const handleUnblock = async (clickedProfile) => {
     try {
       await axiosRes.delete(`/blocked/${clickedProfile.following_id}/`);
@@ -80,7 +57,7 @@ export const ProfileDataProvider = ({ children }) => {
         popularProfiles: {
           ...prevState.popularProfiles,
           results: prevState.popularProfiles.results.map((profile) =>
-          unblockHelper(profile, clickedProfile)
+            unblockHelper(profile, clickedProfile)
           ),
         },
       }));
@@ -133,7 +110,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock }}
+        value={{ setProfileData, handleFollow, handleUnfollow, handleUnblock }}
       >
         {children}
       </SetProfileDataContext.Provider>

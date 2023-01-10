@@ -5,22 +5,22 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 
 
-function ShareModal({ shareModalVisible, setShareModalVisible, owner, id, title, image }) {
+function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, }) {
 
   const sharePost = async () => {
     const share = {
       post: id,
       owner: owner,
-
     }
     console.log(share)
     try {
-      const { data } = await axiosReq.post("/shares/", share);
+      const { data } = await axiosReq.post(`/posts/${id}`, share);
       console.log(data)
     } catch (err) {
       console.log(err);
     }
   };
+
 
   return (
     <Modal

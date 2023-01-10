@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import axios from 'axios';
 
 import Asset from "../../components/Asset";
 
@@ -32,7 +33,7 @@ function ProfilePage() {
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
-    const { setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock } = useSetProfileData();
+    const { setProfileData, handleFollow, handleUnfollow, handleUnblock } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
@@ -58,8 +59,26 @@ function ProfilePage() {
         };
         fetchData();
     }, [id, setProfileData]);
+    async function handleBlock(profile, profileId) {
+        console.log('Blocking user:', profile.id);
+        try {
+            // Send a POST request to the API to block the user
+            const response = await axios.post('/blocked', {
+                user: profileId,
+                reason: '',
+                duration: ''
+            });
+
+            // Handle the success response from the API
+            console.log(response.data);
+        } catch (error) {
+            // Handle the error response from the API
+            console.error(error);
+        }
+    }
 
     const mainProfile = (
+
         <>
             {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
@@ -118,12 +137,7 @@ function ProfilePage() {
                             Unblock User
                         </Button>
                     ) : (
-                        <Button
-                            className={`${btnStyles.Button} ${btnStyles.Black}`}
-                            onClick={() => handleBlock(profile)}
-                        >
-                            Block User
-                        </Button>
+                        <Button onClick={() => handleBlock(profile, profile.id)}>Block User</Button>
                     ))}
                 {profile?.content && <Col className="p-3">{profile.content}</Col>}
             </Row>

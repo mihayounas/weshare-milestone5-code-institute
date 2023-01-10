@@ -34,21 +34,6 @@ export const followHelper = (profile, clickedProfile, following_id) => {
             profile;
 };
 
-export const blockedHelper = (profile, clickedProfile, blocked_id) => {
-    return profile.id === clickedProfile.id
-        ? 
-        {
-            ...profile,
-            blocked_count: profile.blocked_count + 1,
-            blocked_id,
-        }
-        : profile.is_owner
-            ? 
-            { ...profile, blocked_count: profile.blocked_count + 1 }
-            :
-            profile;
-};
-
 export const unfollowHelper = (profile, clickedProfile) => {
     return profile.id === clickedProfile.id
         ? // This is the profile I clicked on,
