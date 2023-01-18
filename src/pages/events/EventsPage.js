@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import CreateEvent from "./CreateEvent";
+import btnStyles from "../../styles/Button.module.css";
+
 import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
@@ -14,29 +18,23 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no_result.webp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import NewPopularStories from "../../pages/stories/NewPopularStories";
-import Story from "../stories/Story";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Event from "./Event";
 
-function StoriesPage({ message, filter }) {
-    const [stories, setStories] = useState({ results: [] });
+
+
+function EventsPage({ message, filter = "" }) {
+    const [events, setEvents] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
-    const currentUser = useCurrentUser();
+    const [showCreateEvent, setShowCreateEvent] = useState(false);
 
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        const fetchStories = async () => {
+        const fetchEvents = async () => {
             try {
-                const { data } = await axiosReq.get(`/stories/`);
-                if (filter) {
-                    const filteredStories = data.results.filter((story) => currentUser?.username === story.owner)
-                    setStories(filteredStories);
-                } else {
-                    setStories(data.results)
-                }
-
+                const { data } = await axiosReq.get(`/events/?${filter}search=${query}`);
+                setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -45,7 +43,7 @@ function StoriesPage({ message, filter }) {
 
         setHasLoaded(false);
         const timer = setTimeout(() => {
-            fetchStories();
+            fetchEvents();
         }, 1000);
 
         return () => {
@@ -55,8 +53,7 @@ function StoriesPage({ message, filter }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2" >
-
+            <Col className="py-2 p-0 p-lg-2" lg={8}>
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form
                     className={styles.SearchBar}
@@ -67,21 +64,21 @@ function StoriesPage({ message, filter }) {
                         onChange={(event) => setQuery(event.target.value)}
                         type="text"
                         className="mr-sm-2"
-                        placeholder="Search posts"
+                        placeholder="Search events"
                     />
                 </Form>
 
                 {hasLoaded ? (
                     <>
-                        {stories.length ? (
-                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginTop: '30px', gap: '20px', maxWidth: '100vw', marginLeft: 'auto', marginRight: 'auto' }}
-                                children={stories.map((story) => (
-                                    <Story key={story.id} {...story} setStories={setStories} stories={stories} />
+                        {events.results.length ? (
+                            <InfiniteScroll
+                                children={events.results.map((event) => (
+                                    <Event key={event.id} {...event} setEvents={setEvents} />
                                 ))}
-                                dataLength={stories.length}
+                                dataLength={events.results.length}
                                 loader={<Asset spinner />}
-                                hasMore={!!stories.next}
-                                next={() => fetchMoreData(stories, setStories)}
+                                hasMore={!!events.next}
+                                next={() => fetchMoreData(events, setEvents)}
                             />
                         ) : (
                             <Container className={appStyles.Content}>
@@ -95,11 +92,13 @@ function StoriesPage({ message, filter }) {
                     </Container>
                 )}
             </Col>
-            <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+            <>
 
-            </Col>
+                <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Add Event</Button>
+                {showCreateEvent && <CreateEvent onClose={() => setShowCreateEvent(false)} />}
+            </>
         </Row>
     );
 }
 
-export default StoriesPage;
+export default EventsPage;

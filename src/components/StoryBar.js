@@ -10,7 +10,7 @@ function StoryBar() {
 
     return (
         <div>
-            <ViewCreatedStory />
+            <ViewCreatedStory filter={true} />
         </div>
     );
 }

@@ -16,24 +16,24 @@ function ViewCreatedStory() {
     const currentUser = useCurrentUser();
     const profile_image = currentUser?.profile_image;
 
-    useEffect(() => {
-        const handleMount = async () => {
-            try {
-                const [{ data: stories }] = await Promise.all([
-                    axiosReq.get(`/stories/${id}`),
-                ]);
-                setStories({ results: [stories] });
-            } catch (err) {
-                console.log(err);
-            }
-        };
+    // useEffect(() => {
+    //     const handleMount = async () => {
+    //         try {
+    //             const [{ data: stories }] = await Promise.all([
+    //                 axiosReq.get(`/stories/${id}`),
+    //             ]);
+    //             setStories({ results: [stories] });
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     };
 
-        handleMount();
-    }, [id]);
+    //     handleMount();
+    // }, [id]);
 
     return (
         <Row className="h-100">
-            <StoriesPage {...stories.results[0]} setStories={setStories} storiesPage />
+            <StoriesPage {...stories.results[0]} setStories={setStories} filter={false} />
         </Row>
     );
 }

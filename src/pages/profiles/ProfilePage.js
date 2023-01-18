@@ -37,6 +37,7 @@ function ProfilePage() {
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
+
     const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
@@ -57,13 +58,34 @@ function ProfilePage() {
                 console.log(err);
             }
         };
+
+        const blockAdmin = async () => {
+            let data = {
+                data: {
+                    user: 'admin2',
+                    blocked: 'admin3',
+                    reason: 'bla',
+                    duration: '20:00:00'
+                }
+            }
+            const response = await fetch(`/blocks/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            const result = await response.json()
+            console.log(result)
+        }
+        blockAdmin();
         fetchData();
     }, [id, setProfileData]);
     async function handleBlock(profile, profileId) {
         console.log('Blocking user:', profile.id);
         try {
             // Send a POST request to the API to block the user
-            const response = await axios.post('/blocked', {
+            const response = await axios.post('/blocks/', {
                 user: profileId,
                 reason: '',
                 duration: ''

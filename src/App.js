@@ -22,6 +22,8 @@ import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
 import StoryEditForm from "./pages/stories/StoryEditForm";
 import StoryBar from "./components/StoryBar";
 import StoriesPage from "./pages/stories/StoriesPage";
+import EventsPage from "./pages/events/EventsPage";
+import CreateEvent from "./pages/events/CreateEvent";
 
 
 
@@ -121,6 +123,20 @@ function App() {
             exact
             path="/stories/:id/edit"
             render={() => <StoryEditForm />}
+          />
+          <Route
+            exact
+            path="/events/"
+            render={() => (
+              <EventsPage />
+            )}
+          />
+          <Route
+            exact
+            path="/events/create"
+            render={() => (
+              <CreateEvent />
+            )}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
