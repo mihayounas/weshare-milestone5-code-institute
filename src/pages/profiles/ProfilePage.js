@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import axios from 'axios';
 
 import Asset from "../../components/Asset";
 
@@ -25,7 +25,6 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no_result.webp";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
-
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
@@ -33,11 +32,10 @@ function ProfilePage() {
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
-    const { setProfileData, handleFollow, handleUnfollow, handleUnblock } = useSetProfileData();
+    const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
-
     const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
@@ -58,49 +56,10 @@ function ProfilePage() {
                 console.log(err);
             }
         };
-
-        const blockAdmin = async () => {
-            let data = {
-                data: {
-                    user: 'admin2',
-                    blocked: 'admin3',
-                    reason: 'bla',
-                    duration: '20:00:00'
-                }
-            }
-            const response = await fetch(`/blocks/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            const result = await response.json()
-            console.log(result)
-        }
-        blockAdmin();
         fetchData();
     }, [id, setProfileData]);
-    async function handleBlock(profile, profileId) {
-        console.log('Blocking user:', profile.id);
-        try {
-            // Send a POST request to the API to block the user
-            const response = await axios.post('/blocks/', {
-                user: profileId,
-                reason: '',
-                duration: ''
-            });
-
-            // Handle the success response from the API
-            console.log(response.data);
-        } catch (error) {
-            // Handle the error response from the API
-            console.error(error);
-        }
-    }
 
     const mainProfile = (
-
         <>
             {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
@@ -146,21 +105,7 @@ function ProfilePage() {
                                 follow
                             </Button>
                         ))}
-
-
                 </Col>
-                {currentUser &&
-                    !is_owner &&
-                    (profile?.following_id ? (
-                        <Button
-                            className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                            onClick={() => handleUnblock(profile)}
-                        >
-                            Unblock User
-                        </Button>
-                    ) : (
-                        <Button onClick={() => handleBlock(profile, profile.id)}>Block User</Button>
-                    ))}
                 {profile?.content && <Col className="p-3">{profile.content}</Col>}
             </Row>
         </>
@@ -205,11 +150,9 @@ function ProfilePage() {
                     )}
                 </Container>
             </Col>
-
             <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
                 <PopularProfiles />
             </Col>
-
         </Row>
     );
 }
