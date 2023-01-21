@@ -9,9 +9,13 @@ function StoryBar() {
 
 
     return (
-        <div>
-            <ViewCreatedStory filter={true} />
-        </div>
+        currentUser ? (
+            <div>
+                <ViewCreatedStory filter={true} />
+            </div>
+        ) : (
+            <h2>You need to be logged in to see recent stories.</h2>
+        )
     );
 }
 

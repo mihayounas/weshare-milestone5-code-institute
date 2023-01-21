@@ -14,7 +14,7 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
     }
     console.log(share)
     try {
-      const { data } = await axiosReq.post(`/posts/${id}`, share);
+      const { data } = await axiosReq.post(`/posts/${id}/share`, share);
       console.log(data)
     } catch (err) {
       console.log(err);

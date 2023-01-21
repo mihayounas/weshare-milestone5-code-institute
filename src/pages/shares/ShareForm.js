@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import Post from "../posts/Post";
 
 function ShareForm() {
     const { id } = useParams();
-    const [post, setPost] = useState({ results: [] });
+    const [isLoading, setIsLoading] = useState(false);
+    const [isShared, setIsShared] = useState(false);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const handleMount = async () => {
-            try {
-                const [{ data: post }] = await Promise.all([
-                    axiosReq.get(`/posts/${id}`),
-                ]);
-                setPost({ results: [post] });
-            } catch (err) {
-                console.log(err);
-            }
-        };
+    const handleSharing = async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            const response = await axiosReq.post(`/posts/${id}`);
+            setIsShared(true);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-        handleMount();
-    }, [id]);
     return (
-        <form>
+        <form onSubmit={handleSharing}>
             <label>
                 Title:
-                <input type="text" />
+                <input type="text" disabled={isShared} />
             </label>
             <br />
-            <Post />
+            <button type="submit" disabled={isLoading || isShared}>
+                {isLoading ? "Sharing..." : "Share"}
+            </button>
+            {error && <p>{error.message}</p>}
+            {isShared && <p>Post shared successfully!</p>}
         </form>
     );
 }
 
-export default ShareForm
+export default ShareForm;
