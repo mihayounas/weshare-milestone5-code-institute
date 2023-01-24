@@ -41,7 +41,7 @@ const Story = (props) => {
     };
 
     return (
-        <Container>
+        <Container style={{ width: "230px" }}>
             <Card className={styles.Post} style={{ width: '15rem', }}>
                 <Card.Body >
                     <Media className="align-items-center justify-content-between">

@@ -67,14 +67,14 @@ function StoriesPage({ message, filter }) {
                         onChange={(event) => setQuery(event.target.value)}
                         type="text"
                         className="mr-sm-2"
-                        placeholder="Search posts"
+                        placeholder="Search Stories"
                     />
                 </Form>
 
                 {hasLoaded ? (
                     <>
                         {stories.length ? (
-                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginTop: '30px', gap: '20px', maxWidth: '100vw', marginLeft: 'auto', marginRight: 'auto' }}
+                            <InfiniteScroll style={{ display: 'flex', overflowY: 'auto', marginRight: '20px' }}
                                 children={stories.map((story) => (
                                     <Story key={story.id} {...story} setStories={setStories} stories={stories} />
                                 ))}

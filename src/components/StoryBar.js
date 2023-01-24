@@ -5,8 +5,6 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 function StoryBar() {
     const currentUser = useCurrentUser();
-    const [stories, setStories] = useState({ results: [] });
-
 
     return (
         currentUser ? (

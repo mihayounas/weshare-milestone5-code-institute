@@ -5,7 +5,7 @@ import css from "../styles/Sidebar.module.css";
 function SideBar() {
     return (
         <div className={css.sidebar}>
-            <a href="/feed" ><i className="fa fa-rss"></i>Feed</a>
+            <a href="/stories" ><i className="fa fa-rss"></i>Stories</a>
             <a href="/liked"><i className="fas fa-heart"></i>Liked</a>
             <a href="/friends"><i className="fa fa-address-book-o"></i>Friends</a>
             <a href="/events"><i className="fa fa-calendar-o" ></i>Events</a>

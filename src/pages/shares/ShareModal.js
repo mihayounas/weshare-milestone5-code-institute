@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { axiosReq } from "../../api/axiosDefaults";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, }) {
-
+function ShareModal({ shareModalVisible, setShareModalVisible, owner, id, title, }) {
   const [error, setError] = useState('');
+  const history = useHistory();
 
   const sharePost = async () => {
     const share = {
@@ -14,9 +15,10 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
     }
 
     try {
-      const { data } = await axiosReq.post(`/posts/${id}/share`, share);
+      const { data } = await axios.post(`/shared/`, share);
       console.log(data)
       setShareModalVisible(false)
+      history.push("/shares");
     } catch (err) {
       console.log(err);
       setError(err.message);
@@ -32,8 +34,8 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
       </Modal.Header>
 
       <Modal.Body>
-        <p>{title}</p>
-        <p>{owner} </p>
+        <h1>Post Title: {title}</h1>
+        <p>Posted By: {owner} </p>
         {error && <p>{error}</p>}
       </Modal.Body>
 
@@ -50,3 +52,6 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
   );
 }
 export default ShareModal;
+
+
+
