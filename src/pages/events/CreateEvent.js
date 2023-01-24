@@ -21,7 +21,7 @@ const CreateEvent = () => {
         }
 
         // Make a POST request to the Django API to create the event
-        fetch('https://weshare-api-app.herokuapp.com/events/', {
+        fetch('https://weshare-api-app.herokuapp.com/event/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

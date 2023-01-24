@@ -3,24 +3,25 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { axiosReq } from "../../api/axiosDefaults";
 
-
-
 function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, }) {
+
+  const [error, setError] = useState('');
 
   const sharePost = async () => {
     const share = {
       post: id,
       owner: owner,
     }
-    console.log(share)
+
     try {
       const { data } = await axiosReq.post(`/posts/${id}/share`, share);
       console.log(data)
+      setShareModalVisible(false)
     } catch (err) {
       console.log(err);
+      setError(err.message);
     }
   };
-
 
   return (
     <Modal
@@ -33,6 +34,7 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
       <Modal.Body>
         <p>{title}</p>
         <p>{owner} </p>
+        {error && <p>{error}</p>}
       </Modal.Body>
 
       <Modal.Footer>

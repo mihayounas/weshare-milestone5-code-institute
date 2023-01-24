@@ -24,6 +24,7 @@ import StoryBar from "./components/StoryBar";
 import StoriesPage from "./pages/stories/StoriesPage";
 import EventsPage from "./pages/events/EventsPage";
 import CreateEvent from "./pages/events/CreateEvent";
+import ShowFriends from "./pages/myfriends/ShowFriends";
 
 
 
@@ -136,6 +137,13 @@ function App() {
             path="/events/create"
             render={() => (
               <CreateEvent />
+            )}
+          />
+          <Route
+            exact
+            path="/friends"
+            render={() => (
+              <ShowFriends />
             )}
           />
           <Route render={() => <p>Page not found!</p>} />

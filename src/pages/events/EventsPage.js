@@ -33,7 +33,7 @@ function EventsPage({ message, filter = "" }) {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const { data } = await axiosReq.get(`/events/?${filter}search=${query}`);
+                const { data } = await axiosReq.get(`/event/?${filter}search=${query}`);
                 setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
@@ -53,7 +53,7 @@ function EventsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
+            <Col className="py-2 p-0 p-lg-2">
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form
                     className={styles.SearchBar}
@@ -97,6 +97,7 @@ function EventsPage({ message, filter = "" }) {
                 <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Add Event</Button>
                 {showCreateEvent && <CreateEvent onClose={() => setShowCreateEvent(false)} />}
             </>
+
         </Row>
     );
 }
