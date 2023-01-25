@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, Container } from "react-bootstrap";
@@ -13,7 +12,6 @@ const Story = (props) => {
     const {
         id,
         owner,
-        profile_id,
         location,
         image,
         updated_at,

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -14,7 +13,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no_result.webp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import NewPopularStories from "../../pages/stories/NewPopularStories";
 import Story from "../stories/Story";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -51,7 +49,7 @@ function StoriesPage({ message, filter }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname]);
+    }, [filter, query, pathname, currentUser?.username]);
 
     return (
         <Row className="h-100">

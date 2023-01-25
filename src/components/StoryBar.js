@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ViewCreatedStory from "../pages/stories/ViewCreatedStory";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 

@@ -20,7 +20,6 @@ import SideBar from "./components/SideBar";
 import MyPosts from "./pages/mydetails/MyPosts";
 import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
 import StoryEditForm from "./pages/stories/StoryEditForm";
-import StoryBar from "./components/StoryBar";
 import StoriesPage from "./pages/stories/StoriesPage";
 import EventsPage from "./pages/events/EventsPage";
 import CreateEvent from "./pages/events/CreateEvent";
@@ -43,7 +42,7 @@ function App() {
         <SideBar />
 
         <Switch>
-        <Route
+          <Route
             exact
             path="/"
             render={() => (
