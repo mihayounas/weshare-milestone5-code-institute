@@ -94,7 +94,7 @@ function EventsPage({ message, filter = "" }) {
             </Col>
             <>
 
-                <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Add Event</Button>
+                <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Create New Event</Button>
                 {showCreateEvent && <CreateEvent onClose={() => setShowCreateEvent(false)} />}
             </>
 

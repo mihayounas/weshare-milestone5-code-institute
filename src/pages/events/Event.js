@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card } from "react-bootstrap";
@@ -17,7 +17,6 @@ const Event = (props) => {
         end_time,
         location,
         description,
-        setEvents,
     } = props;
 
     const currentUser = useCurrentUser();
@@ -38,17 +37,20 @@ const Event = (props) => {
     };
 
     return (
+        
         <Card className={styles.Post}>
-            <div><i className="fa-solid fa-trash" onClick={handleDelete}></i>
-                <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
-            </div>
+            {is_owner && (
+                <div>
+                    <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+                    <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+                </div>
+            )}
             <Card.Body>
                 {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
                 {description && <Card.Text>{description}</Card.Text>}
                 {start_time && <Card.Text>Starting: {start_time}</Card.Text>}
                 {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
                 {location && <Card.Text>Location: {location}</Card.Text>}
-
             </Card.Body>
         </Card >
     );

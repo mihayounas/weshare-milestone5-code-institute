@@ -2,6 +2,15 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import {
+    Form,
+    Row,
+    Col,
+    Container,
+} from "react-bootstrap";
+
+import btnStyles from "../../styles/Button.module.css";
+
 
 const CreateEvent = () => {
     const [title, setTitle] = useState('');
@@ -46,62 +55,75 @@ const CreateEvent = () => {
             });
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Title:
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
-            </label>
-            <br />
-            <label>
-                Start Time:
-                <DatePicker
-                    selected={startTime}
-                    onChange={(date) => setStartTime(date)}
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    timeCaption="time"
-                />
-            </label>
-            <br />
-            <label>
-                End Time:
-                <DatePicker
-                    selected={endTime}
-                    onChange={(date) => setEndTime(date)}
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                    dateFormat="MMMM d, yyyy h:mm aa"
-                    timeCaption="time"
-                />
-            </label>
-            <br />
-            <label>
-                Location:
-                <input
-                    type="text"
-                    value={location}
-                    onChange={(event) => setLocation(event.target.value)}
-                />
-            </label>
-            <br />
-            <label>
-                Description:
-                <textarea
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                />
-            </label>
-            <br />
-            <button type="submit">Create Event</button>
-        </form>
+    return (<Form onSubmit={handleSubmit}>
+        <Row>
+            <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                <Container
+                    className={"justify-content-center"}
+                >
+                    <label>
+                        Title:
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Start Time:
+                        <DatePicker
+                            selected={startTime}
+                            onChange={(date) => setStartTime(date)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={15}
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                            timeCaption="time"
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        End Time:
+                        <DatePicker
+                            selected={endTime}
+                            onChange={(date) => setEndTime(date)}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={15}
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                            timeCaption="time"
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Location:
+                        <input
+                            type="text"
+                            value={location}
+                            onChange={(event) => setLocation(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Description:
+                        <textarea
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">Create Event</button>
+                </Container>
+            </Col>
+        </Row>
+    </Form>
+
     );
 };
 

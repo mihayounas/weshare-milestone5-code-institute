@@ -17,7 +17,6 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateNewStory from "./pages/stories/CreateNewStory";
 import SideBar from "./components/SideBar";
-import MyPosts from "./pages/mydetails/MyPosts";
 import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
 import StoryEditForm from "./pages/stories/StoryEditForm";
 import StoriesPage from "./pages/stories/StoriesPage";
@@ -25,6 +24,7 @@ import EventsPage from "./pages/events/EventsPage";
 import CreateEvent from "./pages/events/CreateEvent";
 import ShowFriends from "./pages/myfriends/ShowFriends";
 import SharesPage from "./pages/shares/SharesPage";
+import NewsSportPage from "./pages/news/NewsSportPage";
 
 
 
@@ -87,7 +87,6 @@ function App() {
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/news" render={() => <NewsPage />} />
-          <Route exact path="/myposts" render={() => <MyPosts />} />
           <Route
             exact
             path="/profiles/:id/edit/username"
@@ -151,6 +150,11 @@ function App() {
             render={() => (
               <SharesPage />
             )}
+          />
+          <Route
+            exact
+            path="/sports"
+            render={() => <NewsSportPage />}
           />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

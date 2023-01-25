@@ -26,6 +26,7 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no_result.webp";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
+
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
