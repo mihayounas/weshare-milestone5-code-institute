@@ -43,7 +43,7 @@ function App() {
         <SideBar />
 
         <Switch>
-          <Route
+        <Route
             exact
             path="/"
             render={() => (
