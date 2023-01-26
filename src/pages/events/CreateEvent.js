@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import "react-datepicker/dist/react-datepicker.css";
 import {
     Form,
@@ -10,6 +11,7 @@ import {
 } from "react-bootstrap";
 
 import btnStyles from "../../styles/Button.module.css";
+import { axiosReq } from "../../api/axiosDefaults";
 
 
 const CreateEvent = () => {
@@ -18,42 +20,39 @@ const CreateEvent = () => {
     const [endTime, setEndTime] = useState(null);
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
+    const currentUser = useCurrentUser();
+    const is_owner = currentUser?.username
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
         // Validate the form fields
         if (!title || !startTime || !endTime || !location || !description) {
             alert('Please fill out all the fields.');
             return;
         }
-
-        // Make a POST request to the Django API to create the event
-        fetch('https://weshare-api-app.herokuapp.com/event/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+    
+        try {
+            // Make a POST request to the Django API to create the event
+            const response = await axiosReq.post('/event/', {
+                owner: is_owner,
                 title: title,
                 start_time: startTime,
                 end_time: endTime,
                 location: location,
                 description: description
-            })
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-                // Clear the form fields
-                setTitle('');
-                setStartTime(null);
-                setEndTime(null);
-                setLocation('');
-                setDescription('');
-            })
-            .catch((error) => {
-                console.error('Error:', error);
             });
+            console.log('Success:', response.data);
+            // Clear the form fields
+            setTitle('');
+            setStartTime(null);
+            setEndTime(null);
+            setLocation('');
+            setDescription('');
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
+  
 
     return (<Form onSubmit={handleSubmit}>
         <Row>
@@ -61,6 +60,15 @@ const CreateEvent = () => {
                 <Container
                     className={"justify-content-center"}
                 >
+                    <label>
+                        Name:
+                        <input
+                            type="text"
+                            value={currentUser?.username}
+                            readOnly
+                            className="form-control"
+                        />
+                    </label>
                     <label>
                         Title:
                         <input
@@ -77,9 +85,9 @@ const CreateEvent = () => {
                             selected={startTime}
                             onChange={(date) => setStartTime(date)}
                             showTimeSelect
-                            timeFormat="HH:mm"
+                            timeFormat="HH:mm:ss"
                             timeIntervals={15}
-                            dateFormat="MMMM d, yyyy h:mm aa"
+                            dateFormat="yyyy-mm-dd HH:mm:ss "
                             timeCaption="time"
                             className="form-control"
                         />
@@ -91,9 +99,9 @@ const CreateEvent = () => {
                             selected={endTime}
                             onChange={(date) => setEndTime(date)}
                             showTimeSelect
-                            timeFormat="HH:mm"
+                            timeFormat="HH:mm:ss"
                             timeIntervals={15}
-                            dateFormat="MMMM d, yyyy h:mm aa"
+                            dateFormat="yyyy-mm-dd HH:mm:ss"
                             timeCaption="time"
                             className="form-control"
                         />

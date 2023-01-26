@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 
@@ -24,12 +24,12 @@ const Event = (props) => {
     const history = useHistory();
 
     const handleEdit = () => {
-        history.push(`/events/${id}/edit`);
+        history.push(`/event/${id}/edit`);
     };
 
     const handleDelete = async () => {
         try {
-            await axiosRes.delete(`/events/${id}/`);
+            await axiosRes.delete(`/event/${id}/`);
             history.goBack();
         } catch (err) {
             console.log(err);
@@ -37,21 +37,20 @@ const Event = (props) => {
     };
 
     return (
-        
+
         <Card className={styles.Post}>
-            {is_owner && (
-                <div>
-                    <i className="fa-solid fa-trash" onClick={handleDelete}></i>
-                    <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
-                </div>
-            )}
+            <div>
+                <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+                <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+            </div>
             <Card.Body>
-                {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
-                {description && <Card.Text>{description}</Card.Text>}
-                {start_time && <Card.Text>Starting: {start_time}</Card.Text>}
-                {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
-                {location && <Card.Text>Location: {location}</Card.Text>}
-            </Card.Body>
+            {is_owner && <Card.Title className="text-center">{is_owner}</Card.Title>}
+            {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
+            {description && <Card.Text>{description}</Card.Text>}
+            {start_time && <Card.Text>Starting: {start_time}</Card.Text>}
+            {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
+            {location && <Card.Text>Location: {location}</Card.Text>}
+        </Card.Body>
         </Card >
     );
 };
