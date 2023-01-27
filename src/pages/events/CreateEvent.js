@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
+import { useEffect } from 'react';
 import {
     Form,
     Row,
@@ -23,6 +24,14 @@ const CreateEvent = () => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username;
     const history = useHistory();
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    useEffect(() => {
+        // if form is submitted refresh the page
+        if (formSubmitted) {
+            window.location.reload();
+        }
+    }, [formSubmitted]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,8 +56,11 @@ const CreateEvent = () => {
             console.error('Error:', error);
         }
          history.push('/events');
+         setFormSubmitted(true);
     };
-
+   
+    
+       
 
     return (<Form onSubmit={handleSubmit}>
         <Row>
