@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
+import { blockHelper } from "../utils/utils";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -67,17 +68,22 @@ export const ProfileDataProvider = ({ children }) => {
   };
   const handleBlock = async (clickedProfile) => {
     try {
-      const { data } = await axiosRes.post("/blocks/", {
+      const { data } = await axiosRes.post("/blocks", {
         blocked: clickedProfile.id,
       });
+
       setProfileData((prevState) => ({
         ...prevState,
         pageProfile: {
-          results: prevState.pageProfile.results.filter((profile) => profile.id !== clickedProfile.id),
+          results: prevState.pageProfile.results.map((profile) =>
+            blockHelper(profile, clickedProfile, data.id)
+          ),
         },
         popularProfiles: {
           ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.filter((profile) => profile.id !== clickedProfile.id),
+          results: prevState.popularProfiles.results.map((profile) =>
+          blockHelper(profile, clickedProfile, data.id)
+          ),
         },
       }));
     } catch (err) {
@@ -86,7 +92,7 @@ export const ProfileDataProvider = ({ children }) => {
   };
   const handleUnblock = async (clickedProfile) => {
     try {
-      await axiosRes.delete(`/blocks/${ clickedProfile.block_id }/`);
+      await axiosRes.delete(`/blocks/${clickedProfile.block_id}/`);
       setProfileData((prevState) => ({
         ...prevState,
         pageProfile: {
@@ -123,7 +129,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData, handleFollow, handleUnfollow,handleBlock, handleUnblock }}
+        value={{ setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock }}
       >
         {children}
       </SetProfileDataContext.Provider>

@@ -23,7 +23,6 @@ import StoriesPage from "./pages/stories/StoriesPage";
 import EventsPage from "./pages/events/EventsPage";
 import CreateEvent from "./pages/events/CreateEvent";
 import ShowFriends from "./pages/myfriends/ShowFriends";
-import SharesPage from "./pages/shares/SharesPage";
 import NewsSportPage from "./pages/news/NewsSportPage";
 
 
@@ -141,13 +140,6 @@ function App() {
             path="/friends"
             render={() => (
               <ShowFriends />
-            )}
-          />
-          <Route
-            exact
-            path="/shares"
-            render={() => (
-              <SharesPage />
             )}
           />
           <Route

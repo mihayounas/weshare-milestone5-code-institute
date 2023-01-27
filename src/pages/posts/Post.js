@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -6,7 +6,6 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import ShareModal from "../../pages/shares/ShareModal"
 
 
 const Post = (props) => {
@@ -18,6 +17,8 @@ const Post = (props) => {
     comments_count,
     likes_count,
     like_id,
+    share_id,
+    shares_count,
     title,
     content,
     image,
@@ -28,7 +29,6 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
-  const [shareModalVisible, setShareModalVisible] = useState(false)
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -46,11 +46,27 @@ const Post = (props) => {
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
+      console.log(data)
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
             ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleShare = async (id) => {
+    try {
+      const { data } = await axiosRes.post("/shares/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, shares_count: post.shares_count + 1, share_id: data.id }
             : post;
         }),
       }));
@@ -75,9 +91,6 @@ const Post = (props) => {
     }
   };
 
-  const handleShareModal = async () => {
-    setShareModalVisible(true)
-  }
 
   return (
     <Card className={styles.Post}>
@@ -93,7 +106,6 @@ const Post = (props) => {
               isOwner={is_owner}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              handleShare={handleShareModal}
             />
           </div>
         </Media>
@@ -117,9 +129,21 @@ const Post = (props) => {
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
+            <>
+              <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+              <span onClick={handleShare}>
+                <i className="fa-regular fa-share-from-square"></i>
+              </span>
+
+            </>
+          ) : share_id ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Post Already Shared!</Tooltip>}
+            >
+            </OverlayTrigger>
           ) : (
             <OverlayTrigger
               placement="top"
@@ -135,14 +159,7 @@ const Post = (props) => {
           {comments_count}
         </div>
       </Card.Body>
-      <ShareModal
-        shareModalVisible={shareModalVisible}
-        setShareModalVisible={setShareModalVisible}
-        title={title}
-        content={content}
-        owner={owner}
-        id={id}
-      />
+
     </Card>
   );
 };
