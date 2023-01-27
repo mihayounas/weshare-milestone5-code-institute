@@ -34,6 +34,7 @@ const Event = (props) => {
         } catch (err) {
             console.log(err);
         }
+        history.push('/events')
     };
 
     return (
@@ -44,13 +45,13 @@ const Event = (props) => {
                 <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
             </div>
             <Card.Body>
-            {is_owner && <Card.Title className="text-center">{is_owner}</Card.Title>}
-            {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
-            {description && <Card.Text>{description}</Card.Text>}
-            {start_time && <Card.Text>Starting: {start_time}</Card.Text>}
-            {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
-            {location && <Card.Text>Location: {location}</Card.Text>}
-        </Card.Body>
+                {is_owner && <Card.Title className="text-center">{is_owner}</Card.Title>}
+                {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
+                {description && <Card.Text>{description}</Card.Text>}
+                {start_time && <Card.Text>Starting: {start_time}</Card.Text>}
+                {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
+                {location && <Card.Text>Location: {location}</Card.Text>}
+            </Card.Body>
         </Card >
     );
 };

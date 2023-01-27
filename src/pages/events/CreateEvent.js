@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 import {
     Form,
@@ -21,7 +21,8 @@ const CreateEvent = () => {
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
     const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username
+    const is_owner = currentUser?.username;
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -31,9 +32,9 @@ const CreateEvent = () => {
             return;
         }
     
+        // Make a POST request to the Django API to create the event
         try {
-            // Make a POST request to the Django API to create the event
-            const response = await axiosReq.post('/event/', {
+            await axiosReq.post('/event/', {
                 owner: is_owner,
                 title: title,
                 start_time: startTime,
@@ -41,18 +42,13 @@ const CreateEvent = () => {
                 location: location,
                 description: description
             });
-            console.log('Success:', response.data);
-            // Clear the form fields
-            setTitle('');
-            setStartTime(null);
-            setEndTime(null);
-            setLocation('');
-            setDescription('');
+           
         } catch (error) {
             console.error('Error:', error);
         }
+         history.push('/events');
     };
-  
+
 
     return (<Form onSubmit={handleSubmit}>
         <Row>

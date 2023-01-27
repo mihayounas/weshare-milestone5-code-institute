@@ -3,37 +3,50 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useEffect } from 'react';
+import { axiosReq } from "../../api/axiosDefaults";
 
-function ShareModal({ shareModalVisible, setShareModalVisible, owner, id, title, }) {
+function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, title, }) {
   const [error, setError] = useState('');
   const history = useHistory();
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username;
+  const [postDetails, setPostDetails] = useState({});
+
+  const getPostDetails = async (postId) => {
+    try {
+      const { data } = await axios.get(`/posts/${postId}`);
+      setPostDetails(data);
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    }
+  };
+  useEffect(() => {
+    getPostDetails(id);
+  }, []);
 
   const sharePost = async () => {
     const share = {
       post: id,
-      owner: owner,
+      owner: is_owner,
     }
-
     try {
-      const { data } = await axios.post(`/shared/`, share);
-      console.log(data)
+      await axiosReq.post(`/shared/`, share);
       setShareModalVisible(false)
       history.push("/shares");
     } catch (err) {
       console.log(err);
       setError(err.message);
     }
-  };
-
+  }
   return (
     <Modal
       show={shareModalVisible}
       onHide={setShareModalVisible}>
-      <Modal.Header closeButton>
-        <Modal.Title>Title</Modal.Title>
-      </Modal.Header>
-
       <Modal.Body>
+        
         <h1>Post Title: {title}</h1>
         <p>Posted By: {owner} </p>
         {error && <p>{error}</p>}

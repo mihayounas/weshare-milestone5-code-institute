@@ -34,7 +34,6 @@ function StoriesPage({ message, filter }) {
                 } else {
                     setStories(data.results)
                 }
-
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -54,21 +53,6 @@ function StoriesPage({ message, filter }) {
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" >
-
-                <i className={`fas fa-search ${styles.SearchIcon}`} />
-                <Form
-                    className={styles.SearchBar}
-                    onSubmit={(event) => event.preventDefault()}
-                >
-                    <Form.Control
-                        value={query}
-                        onChange={(event) => setQuery(event.target.value)}
-                        type="text"
-                        className="mr-sm-2"
-                        placeholder="Search Stories"
-                    />
-                </Form>
-
                 {hasLoaded ? (
                     <>
                         {stories.length ? (

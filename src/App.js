@@ -117,7 +117,6 @@ function App() {
             path="/stories/:id"
             render={() => <ViewCreatedStory />}
           />
-
           <Route
             exact
             path="/stories/:id/edit"

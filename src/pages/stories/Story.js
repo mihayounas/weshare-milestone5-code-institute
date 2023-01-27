@@ -1,11 +1,9 @@
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, Container } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-
-
 
 
 const Story = (props) => {
@@ -53,9 +51,9 @@ const Story = (props) => {
                         </div>
                     </Media>
                 </Card.Body>
-                <Link to={`/stories/${id}`}>
+              
                     <Card.Img src={image} style={{ height: "180px", objectFit: "cover" }} />
-                </Link>
+                
                 <Card.Body>
                     {owner && <Card.Title className="text-center">{owner}'s Story</Card.Title>}
                     {location && <Card.Text>Location:{location}</Card.Text>}

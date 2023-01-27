@@ -19,8 +19,8 @@ function NewsJobsPage() {
     return (
 
         <Row>
-            {news.map(newsItem => (
-                <Col key={newsItem.id} xs={6} md={4}>
+            {news.map((newsItem,index) => (
+                <Col key={index} xs={6} md={4}>
                     <News newsItem={newsItem} />
                 </Col>
             ))}

@@ -34,6 +34,7 @@ function EventsPage({ message, filter = "" }) {
         const fetchEvents = async () => {
             try {
                 const { data } = await axiosReq.get(`/event/?${filter}search=${query}`);
+             
                 setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
@@ -53,21 +54,6 @@ function EventsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2">
-                <i className={`fas fa-search ${styles.SearchIcon}`} />
-                <Form
-                    className={styles.SearchBar}
-                    onSubmit={(event) => event.preventDefault()}
-                >
-                    <Form.Control
-                        value={query}
-                        onChange={(event) => setQuery(event.target.value)}
-                        type="text"
-                        className="mr-sm-2"
-                        placeholder="Search events"
-                    />
-                </Form>
-
                 {hasLoaded ? (
                     <>
                         {events.results.length ? (
@@ -91,7 +77,7 @@ function EventsPage({ message, filter = "" }) {
                         <Asset spinner />
                     </Container>
                 )}
-            </Col>
+           
             <>
 
                 <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Create New Event</Button>
