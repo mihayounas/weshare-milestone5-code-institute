@@ -44,24 +44,9 @@ export const unfollowHelper = (profile, clickedProfile) => {
             following_id: null,
         }
         : profile.is_owner
-            ? 
+            ?
             { ...profile, following_count: profile.following_count - 1 }
-            : 
-            profile;
-};
-
-export const unblockHelper = (profile, clickedProfile) => {
-    return profile.id === clickedProfile.id
-        ? 
-        {
-            ...profile,
-            blocked_count: profile.blocked_count - 1,
-            blocked_id: null,
-        }
-        : profile.is_owner
-            ? 
-            { ...profile, blocked_count: profile.blocked_count - 1 }
-            : 
+            :
             profile;
 };
 export const setTokenTimestamp = (data) => {

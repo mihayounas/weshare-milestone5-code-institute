@@ -33,7 +33,7 @@ function ShareModal({ shareModalVisible, setShareModalVisible, post, owner, id, 
       owner: is_owner,
     }
     try {
-      await axiosReq.post(`/shared/`, share);
+      await axiosReq.post(`/shared`, share);
       setShareModalVisible(false)
       history.push("/shares");
     } catch (err) {

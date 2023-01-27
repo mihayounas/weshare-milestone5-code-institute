@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { useEffect } from 'react';
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -9,6 +10,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
 const Event = (props) => {
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const {
         id,
         owner,
@@ -34,8 +36,15 @@ const Event = (props) => {
         } catch (err) {
             console.log(err);
         }
-        history.push('/events')
+        setFormSubmitted(true);
     };
+
+    useEffect(() => {
+        if (formSubmitted) {
+            history.push('/events');
+            window.location.reload();
+        }
+    }, [formSubmitted]);
 
     return (
 
