@@ -30,6 +30,7 @@ function PostsPage({ message, filter = "" }) {
         const fetchPosts = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
+
                 setPosts(data);
                 setHasLoaded(true);
             } catch (err) {

@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
-import { blockHelper } from "../utils/utils";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -66,48 +65,6 @@ export const ProfileDataProvider = ({ children }) => {
       console.log(err);
     }
   };
-  const handleBlock = async (clickedProfile) => {
-    try {
-      const { data } = await axiosRes.post("/blocks", {
-        blocked: clickedProfile.id,
-      });
-
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            blockHelper(profile, clickedProfile, data.id)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-          blockHelper(profile, clickedProfile, data.id)
-          ),
-        },
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const handleUnblock = async (clickedProfile) => {
-    try {
-      await axiosRes.delete(`/blocks/${clickedProfile.block_id}/`);
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: [...prevState.pageProfile.results, clickedProfile],
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: [...prevState.popularProfiles.results, clickedProfile],
-        },
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -129,7 +86,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData, handleFollow, handleUnfollow, handleBlock, handleUnblock }}
+        value={{ setProfileData, handleFollow, handleUnfollow}}
       >
         {children}
       </SetProfileDataContext.Provider>

@@ -33,15 +33,17 @@ function PostPage() {
                     axiosReq.get(`/posts/${id}`),
                     axiosReq.get(`/comments/?post=${id}`),
                 ]);
+                const profile_id = currentUser?.profile_id;
                 setPost({ results: [post] });
-                setComments(comments);
+                setComments({ results: comments.filter((comment) => comment.profile_id === profile_id) });
             } catch (err) {
                 console.log(err);
             }
         };
 
         handleMount();
-    }, [id]);
+    }, [id, currentUser?.profile_id]);
+
 
     return (
         <Row className="h-100">

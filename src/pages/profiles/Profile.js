@@ -8,14 +8,14 @@ import { Button } from "react-bootstrap";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
 const Profile = (props) => {
-  const { profile, clickedProfile, mobile, imageSize = 55 } = props;
+  const { profile, mobile, imageSize = 55 } = props;
   const { id, following_id, image, owner } = profile;
 
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  const { handleFollow, handleUnfollow, handleBlock, handleUnblock } = useSetProfileData();
+  const { handleFollow, handleUnfollow} = useSetProfileData();
 
   return (
     <div
@@ -42,7 +42,6 @@ const Profile = (props) => {
               >
                 Unfollow
               </Button>
-              <button onClick={() => handleBlock(clickedProfile)}>Block</button>
             </>
           ) : (
             <Button

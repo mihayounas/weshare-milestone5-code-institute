@@ -60,6 +60,7 @@ const Post = (props) => {
     }
   };
   const handleShare = async (id) => {
+    console.log(id, "<===== id")
     try {
       const { data } = await axiosRes.post("/shares/", { post: id });
       setPosts((prevPosts) => ({
@@ -74,7 +75,6 @@ const Post = (props) => {
       console.log(err);
     }
   };
-
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
@@ -90,7 +90,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-
+ 
 
   return (
     <Card className={styles.Post}>

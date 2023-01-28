@@ -44,11 +44,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete, handleShare, isOwner })
                 popperConfig={{ strategy: "fixed" }}
             >
                {renderOwnerActions()}
-                <Dropdown.Item
-                    className={styles.DropdownItem}
-                    onClick={handleShare}
-                    aria-label="share"
-                ><i className="fa fa-share"></i></Dropdown.Item>
+               
 
             </Dropdown.Menu>
         </Dropdown>
