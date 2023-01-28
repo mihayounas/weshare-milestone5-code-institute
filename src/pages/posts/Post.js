@@ -91,7 +91,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-  const handleUnShare= async () => {
+  const handleUnShare = async () => {
     try {
       await axiosRes.delete(`/shares/${share_id}/`);
       setPosts((prevPosts) => ({
@@ -156,18 +156,21 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          <span onClick={() => handleShare(id, owner)}>
+          <span onClick={() => {
+            if (share_id) handleUnShare(share_id);
+            else handleShare(id, owner)
+          }}>
             <i className="fa-regular fa-share-from-square"></i>
           </span>
-          {shares_count}
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
-        </div>
-      </Card.Body>
+        {shares_count}
+        <Link to={`/posts/${id}`}>
+          <i className="far fa-comments" />
+        </Link>
+        {comments_count}
+      </div>
+    </Card.Body>
 
-    </Card>
+    </Card >
   );
 };
 
