@@ -59,14 +59,15 @@ const Post = (props) => {
       console.log(err);
     }
   };
-  const handleShare = async (id) => {
-    console.log(id, "<===== id")
+
+  const handleShare = async (post_id, owner_id) => {
+
     try {
-      const { data } = await axiosRes.post("/shares/", { post: id });
+      const { data } = await axiosRes.post("/shares/", { owner: owner_id, post: post_id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
-          return post.id === id
+          return post.id === post_id
             ? { ...post, shares_count: post.shares_count + 1, share_id: data.id }
             : post;
         }),
@@ -90,7 +91,21 @@ const Post = (props) => {
       console.log(err);
     }
   };
- 
+  const handleUnShare= async () => {
+    try {
+      await axiosRes.delete(`/shares/${share_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, shares_count: post.shares_count - 1, share_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className={styles.Post}>
@@ -129,21 +144,9 @@ const Post = (props) => {
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <>
-              <span onClick={handleLike}>
-                <i className={`far fa-heart ${styles.HeartOutline}`} />
-              </span>
-              <span onClick={handleShare}>
-                <i className="fa-regular fa-share-from-square"></i>
-              </span>
-
-            </>
-          ) : share_id ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Post Already Shared!</Tooltip>}
-            >
-            </OverlayTrigger>
+            <span onClick={handleLike}>
+              <i className={`far fa-heart ${styles.HeartOutline}`} />
+            </span>
           ) : (
             <OverlayTrigger
               placement="top"
@@ -153,6 +156,10 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
+          <span onClick={() => handleShare(id, owner)}>
+            <i className="fa-regular fa-share-from-square"></i>
+          </span>
+          {shares_count}
           <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
           </Link>

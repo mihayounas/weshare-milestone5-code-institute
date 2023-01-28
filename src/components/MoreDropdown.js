@@ -14,7 +14,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     />
 ));
 
-export const MoreDropdown = ({ handleEdit, handleDelete, handleShare, isOwner }) => {
+export const MoreDropdown = ({ handleEdit, handleDelete,isOwner }) => {
     const renderOwnerActions = () => {
         if (isOwner){
             return <React.Fragment>
