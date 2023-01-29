@@ -1,7 +1,5 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
@@ -9,7 +7,6 @@ import Profile from "../profiles/Profile";
 
 const ShowFriends = ({ mobile }) => {
     const { popularProfiles } = useProfileData();
-    const [profile] = popularProfiles.results;
 
     return (
         <Container

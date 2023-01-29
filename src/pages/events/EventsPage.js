@@ -31,7 +31,6 @@ function EventsPage({ message, filter = "" }) {
         const fetchEvents = async () => {
             try {
                 const { data } = await axiosReq.get(`/event/?${filter}search=${query}`);
-
                 setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
