@@ -27,38 +27,38 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .NavBar {
-  height: 60px;
-  }
-  .NavBar h1 {
-  font-size: 30px;
-  }
-  .NavLink {
-  font-size: 14px;
-  }
+    .NavBar {
+    height: 60px;
+    }
+    .NavBar h1 {
+    font-size: 30px;
+    }
+    .NavLink {
+    font-size: 14px;
+    }
   }
   
   @media only screen and (max-width: 480px) {
-  .NavBar {
-  height: 50px;
-  }
-  .NavBar h1 {
-  font-size: 20px;
-  }
-  .NavLink {
-  font-size: 12px;
-  }
+    .NavBar {
+    height: 50px;
+    }
+    .NavBar h1 {
+    font-size: 20px;
+    }
+    .NavLink {
+    font-size: 12px;
+    }
   }
   
   @media only screen and (max-width: 320px) {
-  .NavBar {
-  height: 40px;
-  }
-  .NavBar h1 {
-  font-size: 18px;
-  }
-  .NavLink {
-  font-size: 10px;
-  }
+    .NavBar {
+    height: 40px;
+    }
+    .NavBar h1 {
+    font-size: 18px;
+    }
+    .NavLink {
+    font-size: 10px;
+    }
   }
  

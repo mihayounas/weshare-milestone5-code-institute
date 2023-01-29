@@ -1,3 +1,5 @@
+
+/* Styling the SignUp form */
 .Row {
     height: calc(100vh - 81px);
   }
@@ -44,3 +46,24 @@
   .SignUpCol {
     height: 375px;
   }
+
+  @media screen and (max-width: 778px) {
+    .Row {
+    flex-wrap: wrap;
+    }
+    
+    .Input {
+    width: 100%;
+    margin-bottom: 16px;
+    }
+    
+    .SignInCol,
+    .SignUpCol {
+    width: 100%;
+    height: auto;
+    }
+    
+    .Container {
+    padding: 16px;
+    }
+    }

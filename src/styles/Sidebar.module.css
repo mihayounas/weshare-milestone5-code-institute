@@ -3,8 +3,7 @@
     display: flex;
     flex-direction: column; 
     height: calc(100vh - 50px);
-    margin-right: 25px;
-    margin-left: 20px;
+  
    
    
 }
@@ -12,6 +11,8 @@
 .sidebar > a {
     padding-left: 10px;
     color:rgb(77, 151, 235);
+    margin-right: 55px;
+    margin-left: 55px;
    
 }
 
@@ -20,6 +21,8 @@
     background-color: #e6ecf0;
     border: white solid 1px;
 }
+
+/* Media Queries */
 @media only screen and (min-width: 1200px) {
     .sidebar {
     grid-row: 2;
@@ -55,3 +58,4 @@
     border: white solid 1px;
     }
     }
+    
