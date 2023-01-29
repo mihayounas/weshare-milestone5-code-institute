@@ -25,13 +25,13 @@ function EventsPage({ message, filter = "" }) {
     const { pathname } = useLocation();
     const [showCreateEvent, setShowCreateEvent] = useState(false);
     const currentUser = useCurrentUser();
-    const [query, setQuery] = useState("");
+    const [query] = useState("");
 
     useEffect(() => {
         const fetchEvents = async () => {
             try {
                 const { data } = await axiosReq.get(`/event/?${filter}search=${query}`);
-             
+
                 setEvents(data);
                 setHasLoaded(true);
             } catch (err) {
@@ -51,32 +51,31 @@ function EventsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-                    {hasLoaded ? (
-        <>
-            {events.results.length ? (
-                <InfiniteScroll
-                    children={events.results.map((event) => (
-                        <Event key={event.id} {...event} setEvents={setEvents} currentUser={currentUser}/>
-                    ))}
-                    dataLength={events.results.length}
-                    loader={<Asset spinner />}
-                    hasMore={!!events.next}
-                    next={() => fetchMoreData(events, setEvents)}
-                />
+            {hasLoaded ? (
+                <>
+                    {events.results.length ? (
+                        <InfiniteScroll
+                            children={events.results.map((event) => (
+                                <Event key={event.id} {...event} setEvents={setEvents} currentUser={currentUser} />
+                            ))}
+                            dataLength={events.results.length}
+                            loader={<Asset spinner />}
+                            hasMore={!!events.next}
+                            next={() => fetchMoreData(events, setEvents)}
+                        />
+                    ) : (
+                        <Container className={appStyles.Content}>
+                            <Asset src={NoResults} message={message} />
+                        </Container>
+                    )}
+                </>
             ) : (
                 <Container className={appStyles.Content}>
-                    <Asset src={NoResults} message={message} />
+                    <Asset spinner />
                 </Container>
             )}
-        </>
-    ) : (
-        <Container className={appStyles.Content}>
-            <Asset spinner />
-        </Container>
-    )}
 
             <>
-                // Creating new event 
                 <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Create New Event</Button>
                 {showCreateEvent && <CreateEvent onClose={() => setShowCreateEvent(false)} />}
             </>
