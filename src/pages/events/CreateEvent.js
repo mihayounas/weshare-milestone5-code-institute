@@ -40,8 +40,8 @@ const CreateEvent = () => {
             alert('Please fill out all the fields.');
             return;
         }
-    
-        // Make a POST request to the Django API to create the event
+
+        // Make a POST request to API to create the event
         try {
             await axiosReq.post('/event/', {
                 owner: is_owner,
@@ -51,16 +51,13 @@ const CreateEvent = () => {
                 location: location,
                 description: description
             });
-           
+
         } catch (error) {
             console.error('Error:', error);
         }
-         history.push('/events');
-         setFormSubmitted(true);
+        history.push('/events');
+        setFormSubmitted(true);
     };
-   
-    
-       
 
     return (<Form onSubmit={handleSubmit}>
         <Row>

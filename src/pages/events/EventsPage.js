@@ -76,7 +76,7 @@ function EventsPage({ message, filter = "" }) {
     )}
 
             <>
-
+                // Creating new event 
                 <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Create New Event</Button>
                 {showCreateEvent && <CreateEvent onClose={() => setShowCreateEvent(false)} />}
             </>

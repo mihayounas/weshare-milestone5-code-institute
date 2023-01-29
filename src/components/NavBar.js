@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+// getting user details 
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -16,7 +17,6 @@ import { removeTokenTimestamp } from "../utils/utils";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {

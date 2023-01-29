@@ -7,8 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 
-
-
+// Event
 const Event = (props) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const {

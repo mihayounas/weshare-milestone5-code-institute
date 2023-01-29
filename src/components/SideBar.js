@@ -1,7 +1,7 @@
 import React from 'react';
 import css from "../styles/Sidebar.module.css";
 
-
+// SideBar extra menu
 function SideBar() {
     return (
         <div className={css.sidebar}>

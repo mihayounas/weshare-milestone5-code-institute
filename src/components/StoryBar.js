@@ -2,7 +2,7 @@ import React from "react";
 import ViewCreatedStory from "../pages/stories/ViewCreatedStory";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
-
+// StoryBar to display stories with locations
 function StoryBar() {
     const currentUser = useCurrentUser();
 
