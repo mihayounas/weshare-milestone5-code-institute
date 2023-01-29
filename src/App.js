@@ -1,8 +1,8 @@
-import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
-import Container from "react-bootstrap/Container";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
+import NavBar from "./components/NavBar";
+import Container from "react-bootstrap/Container";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
@@ -24,6 +24,8 @@ import EventsPage from "./pages/events/EventsPage";
 import CreateEvent from "./pages/events/CreateEvent";
 import ShowFriends from "./pages/myfriends/ShowFriends";
 import NewsSportPage from "./pages/news/NewsSportPage";
+import styles from "./App.module.css";
+import NotFound from "./components/NotFound";
 
 
 
@@ -39,7 +41,6 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <SideBar />
-
         <Switch>
           <Route
             exact
@@ -147,7 +148,7 @@ function App() {
             path="/sports"
             render={() => <NewsSportPage />}
           />
-          <Route render={() => <p>Page not found!</p>} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>

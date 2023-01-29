@@ -37,7 +37,7 @@ function PostPage() {
                 setPost({ results: [post] });
                 setComments({ results: comments.filter((comment) => comment.profile_id === profile_id) });
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
 

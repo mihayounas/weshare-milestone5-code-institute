@@ -32,7 +32,7 @@ const Story = (props) => {
             let filteredStories = stories.filter(story => story.id !== id)
             setStories(filteredStories)
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
