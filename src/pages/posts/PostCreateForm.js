@@ -118,7 +118,7 @@ function PostCreateForm() {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Row>
+            <Row style={{ marginRight: "0", marginLeft: "0" }}>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
                         className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}

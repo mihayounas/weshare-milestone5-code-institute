@@ -8,12 +8,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 const News = ({ newsItem }) => {
   const [open, setOpen] = useState(false);
   return (
-    <Container className="news-item-container">
-      <Row>
-        <Col>
-          <div style={{
-            display: 'grid', gridAutoRows: 'auto', gridGap: '1rem', gridTemplateColumns: 'repeat(auto-fill, 250px)',
-          }}>
+   
             <Card style={{ width: '18rem', border: '2px solid #e7e7e7', borderRadius: '4px', padding: '.5rem' }}>
               <Card.Img variant="top" src={newsItem.image_url} />
               <Card.Body>
@@ -34,10 +29,7 @@ const News = ({ newsItem }) => {
                 </>
               </Card.Body>
             </Card>
-          </div >
-        </Col>
-      </Row>
-    </Container>
+     
   );
 };
 

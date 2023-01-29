@@ -30,8 +30,8 @@ function PostsPage({ currentUser, message, filter = "" }) {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
-                setPosts(data);
+                const { data } = await axiosReq.get(`/posts/?filter=${filter}search=${query}`);
+                setPosts(data)
                 setHasLoaded(true);
             } catch (err) {
                 // console.log(err);
@@ -52,7 +52,6 @@ function PostsPage({ currentUser, message, filter = "" }) {
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <p>Popular profiles mobile</p>
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form
                     className={styles.SearchBar}
