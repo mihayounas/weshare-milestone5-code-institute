@@ -37,7 +37,6 @@ function App() {
 
   return (
     <div className={styles.App}>
-
       <NavBar />
       <Container className={styles.Main}>
         <SideBar />
@@ -46,7 +45,9 @@ function App() {
             exact
             path="/"
             render={() => (
-              <PostsPage message="No results found. Adjust the search keyword." />
+              <PostsPage message="No results found. Adjust the search keyword."
+                filter={`owner__followed__owner__profile=${profile_id}&`} />
+
             )}
           />
           <Route

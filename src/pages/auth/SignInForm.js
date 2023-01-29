@@ -27,10 +27,9 @@ function SignInForm() {
     password: "",
   });
   const { username, password } = signInData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -38,7 +37,7 @@ function SignInForm() {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      history.goBack();
+      history.push('/feed')
     } catch (err) {
       setErrors(err.response?.data);
     }
