@@ -14,6 +14,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no_result.webp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Event from "./Event";
 
 
@@ -23,7 +24,7 @@ function EventsPage({ message, filter = "" }) {
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [showCreateEvent, setShowCreateEvent] = useState(false);
-
+    const currentUser = useCurrentUser();
     const [query, setQuery] = useState("");
 
     useEffect(() => {
@@ -46,34 +47,34 @@ function EventsPage({ message, filter = "" }) {
         return () => {
             clearTimeout(timer);
         };
-    }, [filter, query, pathname]);
+    }, [filter, query, pathname, currentUser]);
 
     return (
         <Row className="h-100">
-                {hasLoaded ? (
-                    <>
-                        {events.results.length ? (
-                            <InfiniteScroll
-                                children={events.results.map((event) => (
-                                    <Event key={event.id} {...event} setEvents={setEvents} />
-                                ))}
-                                dataLength={events.results.length}
-                                loader={<Asset spinner />}
-                                hasMore={!!events.next}
-                                next={() => fetchMoreData(events, setEvents)}
-                            />
-                        ) : (
-                            <Container className={appStyles.Content}>
-                                <Asset src={NoResults} message={message} />
-                            </Container>
-                        )}
-                    </>
-                ) : (
-                    <Container className={appStyles.Content}>
-                        <Asset spinner />
-                    </Container>
-                )}
-           
+                    {hasLoaded ? (
+        <>
+            {events.results.length ? (
+                <InfiniteScroll
+                    children={events.results.map((event) => (
+                        <Event key={event.id} {...event} setEvents={setEvents} currentUser={currentUser}/>
+                    ))}
+                    dataLength={events.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!events.next}
+                    next={() => fetchMoreData(events, setEvents)}
+                />
+            ) : (
+                <Container className={appStyles.Content}>
+                    <Asset src={NoResults} message={message} />
+                </Container>
+            )}
+        </>
+    ) : (
+        <Container className={appStyles.Content}>
+            <Asset spinner />
+        </Container>
+    )}
+
             <>
 
                 <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => setShowCreateEvent(true)}>Create New Event</Button>

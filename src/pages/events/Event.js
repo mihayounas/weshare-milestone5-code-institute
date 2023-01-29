@@ -43,15 +43,16 @@ const Event = (props) => {
             history.push('/events');
             window.location.reload();
         }
-    }, [history,formSubmitted]);
+    }, [history, formSubmitted]);
 
     return (
-
         <Card className={styles.Post}>
-            <div>
-                <i className="fa-solid fa-trash" onClick={handleDelete}></i>
-                <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
-            </div>
+            {is_owner && (
+                <div>
+                    <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+                    <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+                </div>
+            )}
             <Card.Body>
                 {is_owner && <Card.Title className="text-center">{is_owner}</Card.Title>}
                 {title && <Card.Title className="text-center">Event : {title}</Card.Title>}
@@ -60,8 +61,12 @@ const Event = (props) => {
                 {end_time && <Card.Text>Ending: {end_time}</Card.Text>}
                 {location && <Card.Text>Location: {location}</Card.Text>}
             </Card.Body>
-        </Card >
+        </Card>
     );
 };
+
+
+
+
 
 export default Event;
