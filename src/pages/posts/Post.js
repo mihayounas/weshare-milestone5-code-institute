@@ -155,14 +155,14 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          { share_id ? (
-             <span onClick={handleUnShare}>
-             <i className={`fa-regular fa-share-from-square ${styles.Heart}`}></i>
-           </span>
-          ) :(
+          {share_id ? (
+            <span onClick={handleUnShare}>
+              <i className={`fa-regular fa-share-from-square ${styles.Heart}`}></i>
+            </span>
+          ) : (
             <span onClick={() => handleShare(id, owner)}>
-            <i className="fa-regular fa-share-from-square"></i>
-          </span>
+              <i className="fa-regular fa-share-from-square"></i>
+            </span>
           )}
           {shares_count}
           <Link to={`/posts/${id}`}>

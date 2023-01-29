@@ -111,7 +111,7 @@ function SignInForm() {
       </Col>
       <Col
         md={6}
-        className={`my-auto d-md-block p-2 ${styles.SignInCol}`}
+        className={`my-auto d-md-block p-2`}
       >
         <Image
           className={`${appStyles.FillerImage}`}

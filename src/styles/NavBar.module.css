@@ -4,22 +4,25 @@
 .NavBar {
   border: 1px solid #dadadf;
   background-color: rgb(56, 103, 246);
-  height: 80px ;
+  height: 80px;
 }
-.NavLink{
-  color:white;
+
+.NavLink {
+  color: white;
   text-shadow: 4px 4px 4px #aaa;
 }
-.NavBar h1{
+
+.NavBar h1 {
   font-family: 'Shrikhand', serif;
-  color:white;
-  font-size:40px;
-  
+  color: white;
+  font-size: 40px;
+
 }
+
 .NavLink {
   padding: 5px;
-  font-size:18px;
-  
+  font-size: 18px;
+
 }
 
 .Active i {
@@ -27,38 +30,47 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .NavBar {
+  .NavBar {
     height: 60px;
-    }
-    .NavBar h1 {
+  }
+
+  .NavBar h1 {
     font-size: 30px;
-    }
-    .NavLink {
+  }
+
+  .NavLink {
     font-size: 14px;
-    }
+    background-color: azure;
+    color: grey;
+    text-align: center;
   }
-  
-  @media only screen and (max-width: 480px) {
-    .NavBar {
+}
+
+@media only screen and (max-width: 480px) {
+  .NavBar {
     height: 50px;
-    }
-    .NavBar h1 {
+  }
+
+  .NavBar h1 {
     font-size: 20px;
-    }
-    .NavLink {
+  }
+
+  .NavLink {
     font-size: 12px;
-    }
+
   }
-  
-  @media only screen and (max-width: 320px) {
-    .NavBar {
+}
+
+@media only screen and (max-width: 320px) {
+  .NavBar {
     height: 40px;
-    }
-    .NavBar h1 {
-    font-size: 18px;
-    }
-    .NavLink {
-    font-size: 10px;
-    }
   }
- 
+
+  .NavBar h1 {
+    font-size: 18px;
+  }
+
+  .NavLink {
+    font-size: 10px;
+  }
+}

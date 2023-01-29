@@ -86,7 +86,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData, handleFollow, handleUnfollow}}
+        value={{ setProfileData, handleFollow, handleUnfollow }}
       >
         {children}
       </SetProfileDataContext.Provider>

@@ -95,13 +95,13 @@ const NavBar = () => {
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav" />
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-left">
-
+        <Navbar.Collapse id="basic-navbar-nav" >
+          <Nav className="ml-auto">
             <NavLink
               exact
               className={styles.NavLink}
               activeClassName={styles.Active}
+              style={{ color: "blue" }}
               to="/"
             >
               <i className="fas fa-home"></i>Home

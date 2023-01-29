@@ -10,7 +10,6 @@ import {
     Col,
     Container,
 } from "react-bootstrap";
-
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 

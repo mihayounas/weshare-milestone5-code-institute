@@ -5,6 +5,7 @@ import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "../profiles/Profile";
 
+
 const ShowFriends = ({ mobile }) => {
     const { popularProfiles } = useProfileData();
 

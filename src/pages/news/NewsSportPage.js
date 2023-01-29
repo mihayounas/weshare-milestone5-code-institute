@@ -1,8 +1,9 @@
+
 import React, { useEffect, useState } from "react";
 import News from "./News";
-import { Col, Row } from 'react-bootstrap';
+import styles from "../../styles/News.module.css"
 
-function NewsJobsPage() {
+function NewsSportPage() {
     const [news, setNews] = useState([])
 
     useEffect(() => {
@@ -18,16 +19,14 @@ function NewsJobsPage() {
 
     return (
 
-        <Row>
-            {news.map((newsItem,index) => (
-                <Col key={index} xs={6} md={4}>
-                    <News newsItem={newsItem} />
-                </Col>
+        <div className={styles.NewsContainer}>
+            {news.map((newsItem, id) => (
+                <News newsItem={newsItem} key={id} />
             ))}
-        </Row>
+        </div>
 
 
     );
 }
 
-export default NewsJobsPage;
+export default NewsSportPage;

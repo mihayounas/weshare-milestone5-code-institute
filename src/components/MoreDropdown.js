@@ -16,9 +16,9 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 
 export const MoreDropdown = ({ handleEdit, handleDelete, isOwner }) => {
     const renderOwnerActions = () => {
-        if (isOwner){
+        if (isOwner) {
             return <React.Fragment>
-                 <Dropdown.Item
+                <Dropdown.Item
                     className={styles.DropdownItem}
                     onClick={handleEdit}
                     aria-label="edit"
@@ -43,8 +43,8 @@ export const MoreDropdown = ({ handleEdit, handleDelete, isOwner }) => {
                 className="text-center"
                 popperConfig={{ strategy: "fixed" }}
             >
-               {renderOwnerActions()}
-               
+                {renderOwnerActions()}
+
 
             </Dropdown.Menu>
         </Dropdown>

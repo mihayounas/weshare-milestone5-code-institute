@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-
 import {
     Form,
     Button,
@@ -9,18 +8,14 @@ import {
     Alert,
     Image
 } from "react-bootstrap";
-
-
 import Asset from "../../components/Asset";
-
 import Upload from "../../assets/upload.png";
-
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+
 
 function PostCreateForm() {
     const [errors, setErrors] = useState({});

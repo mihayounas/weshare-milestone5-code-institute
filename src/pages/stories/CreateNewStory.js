@@ -8,14 +8,12 @@ import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostCreateEditForm.module.css";
-
 import Asset from "../../components/Asset";
-
 import Upload from "../../assets/upload.png";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+
 
 function CreateNewStory() {
     const [errors, setErrors] = useState({});

@@ -4,13 +4,10 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import CreateEvent from "./CreateEvent";
 import btnStyles from "../../styles/Button.module.css";
-
 import Asset from "../../components/Asset";
-
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import NoResults from "../../assets/no_result.webp";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
