@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import News from "./News";
 import styles from "../../styles/News.module.css"

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
-
-
 import StoriesPage from "./StoriesPage";
 
 function ViewCreatedStory() {

@@ -3,29 +3,29 @@ import News from "./News";
 import styles from "../../styles/News.module.css"
 
 function NewsPage() {
-    const [news, setNews] = useState([])
+  const [news, setNews] = useState([])
 
-    useEffect(() => {
-        const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&country=gb&language=en&category=food`
-        const getNews = async () => {
-            const response = await fetch(url)
-            const result = await response.json()
-            setNews(result.results)
-        }
-        getNews()
+  useEffect(() => {
+    const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&country=gb&language=en&category=food`
+    const getNews = async () => {
+      const response = await fetch(url)
+      const result = await response.json()
+      setNews(result.results)
+    }
+    getNews()
 
-    }, [])
+  }, [])
 
-    return (
+  return (
 
-        <div  className={styles.NewsContainer}>
-            {news.map((newsItem, id) => (
-                <News newsItem={newsItem} key={id} />
-            ))}
-        </div>
+    <div className={styles.NewsContainer}>
+      {news.map((newsItem, id) => (
+        <News newsItem={newsItem} key={id} />
+      ))}
+    </div>
 
 
-    );
+  );
 }
 
 export default NewsPage;
