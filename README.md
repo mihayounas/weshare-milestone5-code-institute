@@ -99,7 +99,7 @@ WeShare is set up to be easy to use . It contains features that a user would be 
  * Add Post button <a name="events"></a>  - also a special feature which allows the user to create a post.
  * Add Story button - also a special feature which allows the user to create a story to share a special location.
 
-
+* <strong>Each component : NavBar, SideBar, Main container which holds the posts, forms with validate data, update forms all come together to let the users have the freedom of creation.</strong>
  # Future Features<a name="future-features"></a> 
  Planning to implement extra features as:
  * Share an existing post
