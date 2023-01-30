@@ -2,7 +2,7 @@
 
 <a href="https://weshare-media.herokuapp.com/" target="_blank" rel="noopener">WeShare</a>(press for Live DEMO) is a website designed as a "real world social media application".This website is a full experience of what a social media app is.
 
-![mockups](/static/images/flat-devices-mockup.png)
+![mockups](/images/mock.png)
 
 # Table of contents
 1. <strong>[Objective](#objective)</strong>
@@ -12,7 +12,6 @@
     * [Site Structure](#structure)
     * [Typography](#typo)
     * [Color Scheme](#color) 
-    * [Project Management](#management)
 3. <strong>[Existing Features(User)](#user-features)</strong>:
     * [Site Navigation](#nav)
     * [Welcome Modal](#modal)
@@ -53,32 +52,35 @@
 ## User Stories <a name="user"></a>
 * User
 
-| As a User | I can create a profile that I can take advantage of different features like,create post or share.               |
+| As a User | I can share a post so that I can repost it to my friends.               |
 |-----------|-----------------------------------------------------------------------------------------------------------------|
-| As a User | I edit my profile so that I can easily change profile picture, or change username.                              |
-| As a User | I can share stories so that I can share beautiful locations.                                                    |
-| As a User | I can view news so that I can stay informed.                                                                    |
-| As a User |  I like posts so that I can show my interests.                                                                  |
-| As a User |  I can follow other users so that I can easily connect with them .                                              |
-| As a User |  I can create events so that I can invite people to join in.                                                    |
-| As a User | I can create, update and delete comments on each post so that I can connect and share opinions with other users.|
+| As a User | I can create an event for inviting my friends so that I can meet them.                              |
+| As a User | I can create a story with location so that I can share it with my friends.                                   |
+| As a User |  I can search for specific user so that I can follow them                                                              |
+| As a User |  I like posts so that I can show my interests.                                 |
+| As a User |  I can update my username and password so that I can change my display name and keep my profile secure                                     |
+| As a User |  I can create events so that I can invite people to join in.                                        |
+| As a User | I can edit my own profile so that I can change my profile picture and description.                               |
 | As a user | I can block another user so that I hide his content. 
+| As a user | I can view all the posts by a specific user so that I can check on their latest posts, or decide I want to follow them.|
+|As a user | I can see a list of the most active/followed profiles so that I can see which profiles are popular.|
 
-![userstories](/static/images/userstory.png)
+![userstories](/images/us2.png)
+![userstories](/images/us3.png)
 
 ## Flowchart <a name="flow"></a>
 
  The Flowchart for Second Scoop was made in Lucidchart.
- ![lucidchart](/static/images/flowchart.png)
+ ![lucidchart](/images//Screenshot%202023-01-30%20at%2004.40.28.png)
 The wireframe also made in Lucidchart
-![lucidchart2](/static/images/wire.png)
+![lucidchart2](/images//mocks.png)
 
 ## Site Structure <a name="structure"></a>
- Second Scoop purpose is to bring together all dessert lovers and improve their services through customer opinions and interactions,offering blog option and also reservation system so users can experience themselvesthe delicious desserts .
+ WeShare app has as purpose to bring together all the users and create a comunity of people with same interests.
 
 * User :
     * Home, News , SignIn , SignOut .
-    * Ig Logged in users will have access to extra functionality : Create Posts, StoriesEvents and decide what to do with it, the can edit or delete, share,like and comment .
+    * Logged in users will have access to extra functionality : create Posts, Stories, Events and decide what to do with it, the can edit or delete, share,like and comment .
     * Simple Design to attact users.
     * Simple forms with solid validation .
 
@@ -88,14 +90,7 @@ The wireframe also made in Lucidchart
 ## Color Scheme <a name="color"></a>
 Color scheme was created on <a href="https://coolors.co/">Coolors</a>
 ![color-scheme](/images/colors.png)
-## Project Management <a name="management"></a>
-* Database
-        * I created a sparate API. 
-<a name="#objective" >Back to Top </a>
-
- # Existing Features <a name="user-features"></a>
-## Existing Features(User) <a name="user"></a>
- 
+ # Existing Features <a name="user-features"></a> 
 WeShare is set up to be easy to use . It contains features that a user would be fimiliar with such as user login,user log out,create post, like and comments.
 
 ## Site Navigation
@@ -106,8 +101,6 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 
 ## Popular Profiles <a name="slider"></a>
 ![profiles](/images/Screenshot%202023-01-30%20at%2007.43.21.png)
-
- * ## User Area <a name="user-reg"></a>
 
  * User Registration -  has built-in authentication and authorization to check certain criteria is met before an account is validated. All passwords are hidden for security purposes.
 
@@ -146,77 +139,52 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 
 ## BACK-END:<a name="packages"></a>
 * [PYTHON](https://www.w3schools.com/python/) to get details from the user and validate the inputs with python logic.
-# Heroku : used for app hosting.
+* [DJANGO-REST FRAMEWORK](https://www.django-rest-framework.org/)
 
 # Testing:
 SecondScoop website has been properly tested ,all the code has been run through the W3C html Validator,W3C CSS Validator and JavaScript Validator. Minor errors were found on the first About us page. After fixing and retesting, no errors were found .
-### HTML validator results are below:
-![errors-html](/static/images/htmlcheck.png)
 
  ### CSS validator results are below:
- ![Testing2](/static/images/css.png)
+ ![Testing2](/images/validator.png)
 
  ### Javascript Validator results are below:
- ![Testing3](/static/images/jshint.png)
+ ![Testing3](/images/jslint.png)
 
 <a href="#objective" dir='auto'>Back to Top </a>
- ### The app was tested with PEP8 called Pycodestyle.No major errors were found.
- Pep8 Results
- ![Testing4](/static/images/pep1.png)
- ![Testing4](/static/images/pep2.png)
- ![Testing4](/static/images/pep4.png)
- ![Testing4](/static/images/pep5.png)
- ![Testing4](/static/images/pep6.png)
- ![Testing4](/static/images/pep7.png)
-
 # Lighthouse
 
 The website was tested using [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) in Chrome Developer Tools to test each of the pages for:
-* Performance - How the page will be loading.
+* Performance - How the page will be loading.- Needs improvement
 * Accessibility - Checking if the website is  accessible for all users and how can it be improved.
 * Best Practices 
 * SEO - Search Engine Optimisation. This helps us to understand if the website is optimised for search engine result rankings.
 
-![lighthouse](/static/images/lighthouse.png)
-
-
-## Responsiveness Test
-
-* The responsive design tests were carried out manually with [Website Planet](https://www.websiteplanet.com/) ,I can confirm that all the tests were passed.
-![web-planet-image-desktop](/static/images/desktop.png)
-![web-planet-image-mobile](/static/images/mobile.png)
-* The testing was also done through Google Chrome Dev Tools by selecting a device of your choice as follows :
-![dev-test](/static/images/dev1tool1.png)
-![dev-test](/static/images/dev2.png)
+![lighthouse](/images/lighthouse.png)
 
 # Browser Compatibility
-SecondScoop site was tested on the following browsers with no visible issues for the user:
+WeShare site was tested on the following browsers with no visible issues for the user:
 1. Google Chrome 
 2. Safari 
 3. Mozilla Firefox
 * Appearance, functionality and responsiveness were consistent throughout for a range of browsers and device sizes. 
 
 # Known bugs:
+* Sometimes getting error 401.
 
 * ### Resolved
-* Favicon icon not loading.
-* Error in Css testing solved.
-![Error-css](/static/images/csserror.png)
-* Errors in HTML solved.
-![errors-html](/static/images/htmlerror.png)
-
+* Multiple times - Error 500 and 400 fixed after sending the right data to API
 
 # Deployment: <a name="deploy"></a>
 
 * The site was deployed to Heroku pages.
 
 1. First we have to create our app on heroku website.
-![createapp](/static/images/create-app.png)
+![createapp](/images/create1.png)
 2. Name the app.
-![create2](/static/images/create1.png)
+![create2](/images/create-app.png)
 
 3. Choose Deploy Section and Connect to Github.
-![heroku](/static/images/deploy.png)
+![heroku](/images/deploy.png)
 
  
 * The site was deployed to GitHub pages. 
@@ -224,7 +192,7 @@ The steps to deploy a site are as follows:
   1. In the GitHub repository, navigate to the **Settings** tab.
   2. Once in Settings, navigate to the **Pages** on the left side menu.
 
- The live link to the Github repository can be found here :https://github.com/mihayounas/second-scoop-milestone-4 .
+ The live link can be found here :https://weshare-media.herokuapp.com
 
  ### **To create a local clone of this project**<a name="clone"></a>
 The method from cloning a project from GitHub is below:
@@ -238,7 +206,7 @@ The method from cloning a project from GitHub is below:
 # Credits<a name="credits"></a>
 
 * Tutors were very helpful in making me understand the issues I have encountered throughout.
-* Please note that the Post model is inspired by the walkthrough project done with Code Institute.
+* Please note that some of the functionality is inspired by the walkthrough project done with Code Institute.
 * Some of the code ideas came from  [Stack Overflow](https://stackoverflow.com/).
 
 ### Content<a name="content"></a>
@@ -254,8 +222,8 @@ The method from cloning a project from GitHub is below:
 * Pictures were taken from Pexels(https://www.pexels.com/)
 
  # Acknowledgements <a name="acknoledge"></a>
-The site was completed as a Portfolio 4 Project  Full Stack Software Developer at the [Code Institute](https://codeinstitute.net/). As such I would like to thank my mentor [Precious Ijege](https://www.linkedin.com/in/precious-ijege-908a00168/) and Code Institute Tutor Support for their help and support.
+The site was completed as a Portfolio 5 Project  Full Stack Software Developer React Advanced FrontEnd at the [Code Institute](https://codeinstitute.net/). As such I would like to thank my mentor Jubril Akolade and Code Institute Tutor Support for their help and support.
 
-Mihaela Younas 2022.
+Mihaela Younas 2023.
 
 <a href="#objective" dir='auto'>Back to Top </a>
