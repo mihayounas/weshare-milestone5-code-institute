@@ -151,6 +151,7 @@ WeShare site was tested on the following browsers with no visible issues for the
 * Appearance, functionality and responsiveness were consistent throughout for a range of browsers and device sizes. 
 
 # Known bugs:
+* <strong>PLEASE NOTE MY LAST VERSION BUILD WAS REJECTED ON HEROKU BUT APP WORKS AS EXPECTED WITH NO ERRORS - IT FAILED CAUSE DEPENDENCY ESLINT</strong>
 * Sometimes getting error 401.
 
 * ### Resolved
