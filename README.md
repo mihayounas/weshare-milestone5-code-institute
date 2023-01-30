@@ -77,113 +77,67 @@ The wireframe also made in Lucidchart
  Second Scoop purpose is to bring together all dessert lovers and improve their services through customer opinions and interactions,offering blog option and also reservation system so users can experience themselvesthe delicious desserts .
 
 * User :
-    * Home, Menu , Event Reservation , Contact, Profile dropdown - Check reservations, check messages and Logout .
-    * Blog for users to connect and share experieneces .
-    * Welcoming Design to attact users.
+    * Home, News , SignIn , SignOut .
+    * Ig Logged in users will have access to extra functionality : Create Posts, StoriesEvents and decide what to do with it, the can edit or delete, share,like and comment .
+    * Simple Design to attact users.
     * Simple forms with solid validation .
-    * Easy way to manage reservations, messages,and posts.
-
-* Admin :
-    * Navigation is similar to the User but has speacial features :
-        * View all the reservations
-        * View all the messages
-        * Approve reservations
 
 ## Typography <a name="typo"></a>
-* A combination of 'Dancing Script' , 'lato' and 'sans-serif' has been user for a better looking site.
+* A combination of 'Shrikhand' and 'sans-serif' has been user for a better looking site.
 
 ## Color Scheme <a name="color"></a>
 Color scheme was created on <a href="https://coolors.co/">Coolors</a>
-![color-scheme](/static/images/colors.png)
+![color-scheme](/images/colors.png)
 ## Project Management <a name="management"></a>
 * Database
-        * To create the database schema, I used an graph modelling tool Graph Models which shows the entire relationship between all models in the database.I would like to mention that djreservations was not used on this ocassion and I am planning for better structure.
-        After following the steps required to install Graph Models, I then used <a href="https://dreampuf.github.io">dreampuf</a> to present the data in a clear way. 
-![color-scheme](/static/images/graphviz.png)
-
+        * I created a sparate API. 
 <a name="#objective" >Back to Top </a>
 
  # Existing Features <a name="user-features"></a>
 ## Existing Features(User) <a name="user"></a>
  
-Second Scoop is set up to be easy to use . It contains features that a user would be fimiliar with such as user login,user log out,book reservations and contact forms, blog posts all offering options to create,read,update and delete(CRUD).
+WeShare is set up to be easy to use . It contains features that a user would be fimiliar with such as user login,user log out,create post, like and comments.
 
 ## Site Navigation
  * ## Heading and Title<a name='nav'></a>
- ![heasder](/static/images/header.png)
-## Modal <a name="modal"></a>
- * Displays Modals of Welcome to direct user to log in or create a new account.
+![legged_in](/images/log.png)
 
- ![modal](/static/images/modal.png)
+![notlogged](/images/notlogged.png)
 
-## Slider  <a name="slider"></a>
- * Includes the name of the website and a slider showing their delicious desserts .
-
- ![slider](/static/images/slider.png)
+## Popular Profiles <a name="slider"></a>
+![profiles](/images/Screenshot%202023-01-30%20at%2007.43.21.png)
 
  * ## User Area <a name="user-reg"></a>
 
  * User Registration -  has built-in authentication and authorization to check certain criteria is met before an account is validated. All passwords are hidden for security purposes.
 
- ![register](/static/images/register.png)
+ ![register](/images/signup.png)
 
- * Log In - existing users will ahve to pass authorisation with entering their current username and password to match the database.
- ![login](/static/images/signin.png)
- * Log Out - Users can log out easily and a warning message will be displayed .
- ![logout](/static/images/signout.png)
+ * Log In - existing users will have to pass authorisation with entering their current username and password to match the database.
+ ![login](/images/singin.png)
 
  Once logged in, user will see:
 
- * Menu <a name="menu"></a> - a display of some of their recipes with pictures gallery and description.
-  ![login](/static/images/menu.png)
+ * Sidebar <a name="menu"></a> A list of special features for user - Stories, Feed, Friends, Events and Sport news.
+  ![sidebar](/images/sidebar.png)
   
- * Event Reservations <a name="events"></a>  -CRUD - offering options to create new request with authorisations criteria including : name,date(as a pop up calendar),phone number,number of guests,and message. Once created the reservations will show in Check reservations,there will show if it was approved by the admin or not and also giving options of updated or delete it .
+ * Add Post button <a name="events"></a>  - also a special feature which allows the user to create a post.
+ * Add Story button - also a special feature which allows the user to create a story to share a special location.
 
- ![events-page](/static/images/events.png)
-
-* Contact page <a name="contact"></a> - CRUD - displaying a map, offering option of sending a message, after the message is sent in the check you messages tab user can see the messages send and if it was read by admin or not, also can edit or delete any message. 
-
-![contact-page](/static/images/contact2.png)
-
-![contact-page](/static/images/contact.png)
-
-![messages-page](/static/images/messages.png)
-
-* A Drop Down <a name="dropdown"></a>  button with specific username and under that tab will be options to check event,messages or LogOut.
-
-![dropdown](/static/images/drop.png)
-
-* Blog <a name="blog"></a>  - CRUD - this button will display all the posts by other users and each post will have details and offer comment sections to allow users to interact. Every comment or post will be approved by the user before displayed.Users can delete or edit their own post only.
-![posts-page](/static/images/posts.png)
-
-### Error 404 and 500 Page.<a name="error"></a> 
-
-![error](/static/images/error.png)
-
- * ## Admin Area - SuperUser <a name="admin"></a> 
- * From the Pop Up Modal Admin can LogIn .
- * As Admin :
- 1. Can manage all the user requests.
- 2. Can check and approve or disapprove posts.
- 3. Can answer messages.
- 4. Can approve events for specific number of guests
-![admin-page](/static/images/admin1.png)
-![admin-page](/static/images/adminview.png)
-![admin-page](/static/images/adminress.png)
 
  # Future Features<a name="future-features"></a> 
- * Planning to use DJ Reservation as on this occasion I did not use it.
- * In future I am planning on adding Gallery page for images from specific events to attract users.
- * Adding special events where you can book your spot through the site.
- * Adding a booking fee.
- * Better Code Structure and organisation.
+ Planning to implement extra features as:
+ * Share an existing post
+ * Block users
+ * Stories with timer
+ * Better organisation and testing
 
  # Technologies Used <a name="technologies"></a>
 ## FRONT-END:
 * [HTML5](https://www.w3schools.com/html/) - provides the content and structure for the website.
 * [CSS](https://www.w3.org/Style/CSS/Overview.en.html) - provides the styling.
-* [BOOTSTRAP](https://getbootstrap.com/) - provides specific styling.
-* [JavaScript](https://www.w3schools.com/js/)-provides interactivity.
+* [REACT-BOOTSTRAP](https://react-bootstrap.github.io/) - provides specific styling.
+* [ReactJS](https://reactjs.org/)-provides interactivity.
 * [Gitpod](https://www.gitpod.io/#get-started) - used to deploy the website.
 * [Github](https://github.com/) - used to host and edit the website.
 * [Cloudinary](https://cloudinary.com/) - used to store pictures .
