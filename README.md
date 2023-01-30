@@ -14,26 +14,8 @@
     * [Color Scheme](#color) 
 3. <strong>[Existing Features(User)](#user-features)</strong>:
     * [Site Navigation](#nav)
-    * [Welcome Modal](#modal)
     * [Registration for user](#user-reg)
-    * [Presentation Slider](#slider)
-    * [Menu Page](#menu)
-    * [Events Reservations](#events)
-    * [Contact page](#contact)
-    * [Dropdown Account button](#dropdown)
-    * [Blog](#blog) 
-    * [Errors 404 and 500](#error)
-4. <strong>[Existing Features(Admin)](#features)</strong>:
-    * [Admin Panel](#admin)
-    * [View/Approve/Delete All Reservations](#view-reservations)
-    * [View/Reply/Delete All Messages](#view-messages)
-    * [Delete Comments](#delete)
-5. <strong>[Future Features](#future-features)</strong>:
-    * [Improve Reservations Features](#improve)
-    * [Add Reply into the view conversation](#add_reply)
-    * [Add Automatic Emails](#emails)
-    * [Better User Profile](#better-profile)
-    * [More features for Admin section](#more-feat)
+4. <strong>[Future Features](#future-features)</strong>:
 6. <strong>[Technologies Used](#technologies)</strong>
 7. <strong>[Python Packages](#packages)</strong>
 8. <strong>[Testing](#testing)</strong>
@@ -70,7 +52,7 @@
 
 ## Flowchart <a name="flow"></a>
 
- The Flowchart for Second Scoop was made in Lucidchart.
+ The Flowchart for WeShare was made in Lucidchart.
  ![lucidchart](/images//Screenshot%202023-01-30%20at%2004.40.28.png)
 The wireframe also made in Lucidchart
 ![lucidchart2](/images//mocks.png)
@@ -102,7 +84,7 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 ## Popular Profiles <a name="slider"></a>
 ![profiles](/images/Screenshot%202023-01-30%20at%2007.43.21.png)
 
- * User Registration -  has built-in authentication and authorization to check certain criteria is met before an account is validated. All passwords are hidden for security purposes.
+ * User Registration <a name="user-reg"></a> -  has built-in authentication and authorization to check certain criteria is met before an account is validated. All passwords are hidden for security purposes.
 
  ![register](/images/signup.png)
 
@@ -142,7 +124,7 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 * [DJANGO-REST FRAMEWORK](https://www.django-rest-framework.org/)
 
 # Testing:
-SecondScoop website has been properly tested ,all the code has been run through the W3C html Validator,W3C CSS Validator and JavaScript Validator. Minor errors were found on the first About us page. After fixing and retesting, no errors were found .
+WeShare website has been properly tested ,all the code has been run through the W3C html Validator,W3C CSS Validator and JavaScript Validator. Minor errors were found on the first About us page. After fixing and retesting, no errors were found .
 
  ### CSS validator results are below:
  ![Testing2](/images/validator.png)
