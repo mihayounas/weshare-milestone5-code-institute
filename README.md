@@ -29,6 +29,13 @@
 # Objective <a name="objective"></a>
 
 * The major goal is to prove  a high level of expertise in React and connected it to backend Django Rest FrameWork.
+* Real-world social media application that provides a full experience of what a social media app.
+* User Registration.
+* Creating and editing posts.
+* Commenting.
+* Liking.
+* Following other users.
+
 # UX
 
 ## User Stories <a name="user"></a>
@@ -118,6 +125,19 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 * [Cloudinary](https://cloudinary.com/) - used to store pictures .
 * [Mockupbro](https://mockupbro.com/mockup/flat-devices-mockup) - user to create mockups.
 
+# React Components 
+
+* Navbar component: This component is a reusable navigation bar that can be used in various pages of the application. To use the Navbar component, simply import it and add it to the appropriate section of the JSX code. You can customize the appearance and functionality of the Navbar component by passing props such as logo image, links, and search bar.
+
+* Asset component: This component is a reusable image or video asset that can be used in various parts of the application. To use the Asset component, simply import it and pass the source URL as a prop. You can customize the appearance and behavior of the Asset component by passing additional props such as width, height, and alt text.
+
+* Avatar component: This component is a reusable user avatar image that can be used in various parts of the application. To use the Avatar component, simply import it and pass the source URL as a prop. You can customize the appearance and behavior of the Avatar component by passing additional props such as size, shape, and online status.
+
+* MoreDropdown component: This component is a reusable dropdown menu that can be used in various parts of the application. To use the MoreDropdown component, simply import it and pass the menu items as an array of objects. You can customize the appearance and behavior of the MoreDropdown component by passing additional props such as position, alignment, and callback functions.
+
+* NotFound component: This component is a reusable error page that can be used when a page or resource is not found. To use the NotFound component, simply import it and add it to the appropriate route in the React Router. You can customize the appearance and behavior of the NotFound component by passing additional props such as error message and image.
+
+* Sidebar component: This component is a reusable side navigation menu that can be used in various pages of the application. To use the Sidebar component, simply import it and add it to the appropriate section of the JSX code. You can customize the appearance and functionality of the Sidebar component by passing props such as links, icons, and active state.
 
 ## BACK-END:<a name="packages"></a>
 * [PYTHON](https://www.w3schools.com/python/) to get details from the user and validate the inputs with python logic.
