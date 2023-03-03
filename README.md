@@ -189,11 +189,6 @@ WeShare site was tested on the following browsers with no visible issues for the
 3. Choose Deploy Section and Connect to Github.
 ![heroku](/images/deploy.png)
 
- 
-* The site was deployed to GitHub pages. 
-The steps to deploy a site are as follows:
-  1. In the GitHub repository, navigate to the **Settings** tab.
-  2. Once in Settings, navigate to the **Pages** on the left side menu.
 
  The live link can be found here :https://weshare-media.herokuapp.com
 
