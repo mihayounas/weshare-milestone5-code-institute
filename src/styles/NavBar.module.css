@@ -10,12 +10,14 @@
 .NavLink {
   color: white;
   text-shadow: 4px 4px 4px #aaa;
+
 }
 
 .NavBar h1 {
   font-family: 'Shrikhand', serif;
   color: white;
   font-size: 40px;
+
 
 }
 
@@ -43,6 +45,7 @@
     background-color: azure;
     color: grey;
     text-align: center;
+    size: smaller;
   }
 }
 

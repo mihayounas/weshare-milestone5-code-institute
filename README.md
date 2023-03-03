@@ -107,13 +107,10 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 
  Once logged in, user will see:
 
- * Sidebar <a name="menu"></a> A list of special features for user - Stories, Feed, Friends, Events and Sport news.
-  ![sidebar](/images/sidebar.png)
-  
  * Add Post button <a name="events"></a>  - also a special feature which allows the user to create a post.
  * Add Story button - also a special feature which allows the user to create a story to share a special location.
 
-* <strong>Each component : NavBar, SideBar, Main container which holds the posts, forms with validate data, update forms all come together to let the users have the freedom of creation.</strong>
+* <strong>Each component : NavBar, Main container which holds the posts, forms with validate data, update forms all come together to let the users have the freedom of creation.</strong>
  # Future Features<a name="future-features"></a> 
  Planning to implement extra features as:
  * Share an existing post
@@ -143,8 +140,6 @@ WeShare is set up to be easy to use . It contains features that a user would be 
 * MoreDropdown component: This component is a reusable dropdown menu that can be used in various parts of the application. To use the MoreDropdown component, simply import it and pass the menu items as an array of objects. You can customize the appearance and behavior of the MoreDropdown component by passing additional props such as position, alignment, and callback functions.
 
 * NotFound component: This component is a reusable error page that can be used when a page or resource is not found. To use the NotFound component, simply import it and add it to the appropriate route in the React Router. You can customize the appearance and behavior of the NotFound component by passing additional props such as error message and image.
-
-* Sidebar component: This component is a reusable side navigation menu that can be used in various pages of the application. To use the Sidebar component, simply import it and add it to the appropriate section of the JSX code. You can customize the appearance and functionality of the Sidebar component by passing props such as links, icons, and active state.
 
 ## BACK-END:<a name="packages"></a>
 * [PYTHON](https://www.w3schools.com/python/) to get details from the user and validate the inputs with python logic.

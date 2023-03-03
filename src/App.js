@@ -16,7 +16,6 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateNewStory from "./pages/stories/CreateNewStory";
-import SideBar from "./components/SideBar";
 import ViewCreatedStory from "./pages/stories/ViewCreatedStory";
 import StoryEditForm from "./pages/stories/StoryEditForm";
 import StoriesPage from "./pages/stories/StoriesPage";
@@ -39,7 +38,6 @@ function App() {
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
-        <SideBar />
         <Switch>
           <Route
             exact

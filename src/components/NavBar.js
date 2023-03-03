@@ -112,6 +112,18 @@ const NavBar = () => {
               to="/news">
               <i className="fa-regular fa-newspaper"></i>News
             </NavLink>
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/events">
+              <i className="fa fa-calendar"></i>Events
+            </NavLink>
+            <NavLink
+              className={styles.NavLink}
+              activeClassName={styles.Active}
+              to="/stories">
+              <i className="fa fa-rss"></i>Stories
+            </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
 
