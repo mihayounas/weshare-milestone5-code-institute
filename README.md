@@ -57,6 +57,13 @@
 ![userstories](/images/us2.png)
 ![userstories](/images/us3.png)
 
+# User Improvement
+
+* Code reusability and modularity: React's component-based architecture encourages code reusability and modularity. This can lead to a more consistent user experience, as the same components can be used across different parts of the application, and updates to a single component can be propagated throughout the application.
+* Improved mobile experience: React-based user interfaces can be optimized for mobile devices, resulting in a better mobile experience for users. This can lead to increased user engagement and satisfaction, as more and more users access applications on mobile devices.
+* Faster loading and rendering times: React is designed to efficiently update and render user interfaces, resulting in faster loading times and smoother user interactions. This can lead to a better overall user experience, as users don't have to wait as long for pages and components to load.
+* Dynamic and interactive user interfaces: React makes it easy to create dynamic and interactive user interfaces that respond to user input in real-time. This can lead to a more engaging user experience, as users can interact with the interface and see immediate feedback.
+
 ## Flowchart <a name="flow"></a>
 
  The Flowchart for WeShare was made in Lucidchart.
