@@ -39,6 +39,11 @@ const CreateEvent = () => {
       alert('Please fill out all the fields.');
       return;
     }
+    // Validate the time range
+    if (endTime < startTime) {
+      alert('Finishing date cannot be before starting date.');
+      return;
+    }
 
     // Make a POST request to API to create the event
     try {
@@ -91,21 +96,18 @@ const CreateEvent = () => {
               showTimeSelect
               timeFormat="HH:mm:ss"
               timeIntervals={15}
-              dateFormat="yyyy-mm-dd HH:mm:ss "
+              dateFormat="yyyy-MM-dd HH:mm:ss"
               timeCaption="time"
               className="form-control"
             />
-          </label>
-          <br />
-          <label>
-            End Time:
+            End:
             <DatePicker
               selected={endTime}
               onChange={(date) => setEndTime(date)}
               showTimeSelect
               timeFormat="HH:mm:ss"
               timeIntervals={15}
-              dateFormat="yyyy-mm-dd HH:mm:ss"
+              dateFormat="yyyy-MM-dd HH:mm:ss"
               timeCaption="time"
               className="form-control"
             />
