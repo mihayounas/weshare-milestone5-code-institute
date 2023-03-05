@@ -12,34 +12,39 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-
-function PostEditForm() {
+function StoryEditForm() {
   const [errors, setErrors] = useState({});
+  const [story, setStory] = useState({});
+  const [location, setLocation] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const [image, setImage] = useState(null);
 
   const [storyData, setStoryData] = useState({
     location: "",
     image: "",
   });
-  const { location, image } = storyData;
 
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
-    const handleMount = async () => {
+    const getStory = async () => {
       try {
-        const { data } = await axiosReq.get(`/stories/${id}`);
-        const { location, image, is_owner } = data;
-
-        is_owner ? setStoryData({ location, image }) : history.push("/");
-      } catch (err) {
-        // console.log(err);
+        const response = await axiosReq.get(`/stories/${id}`);
+        setStory(response.data);
+        setLocation(response.data.location);
+        setImagePreview(response.data.image_url);
+        setImage(response.data.image_url); // Add this line to update the image state variable
+      } catch (error) {
+        console.log(error);
       }
     };
 
-    handleMount();
-  }, [history, id]);
+    getStory();
+  }, [id]);
+
 
   const handleChange = (event) => {
     setStoryData({
@@ -49,14 +54,14 @@ function PostEditForm() {
   };
 
   const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setStoryData({
-        ...storyData,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
-    }
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
   };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,18 +89,13 @@ function PostEditForm() {
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
-          type="text"
-          name="location"
+          as="textarea"
+          rows={6}
+          name="Location"
           value={location}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.location?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
       {errors?.content?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
@@ -106,10 +106,10 @@ function PostEditForm() {
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
       >
-        Cancel
+        cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        Save
+        save
       </Button>
     </div>
   );
@@ -122,9 +122,11 @@ function PostEditForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              <figure>
-                <Image className={appStyles.Image} src={image} rounded />
-              </figure>
+              {image ? (
+                <figure>
+                  <Image className={appStyles.Image} src={image} rounded />
+                </figure>
+              ) : null}
               <div>
                 <Form.Label
                   className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
@@ -141,6 +143,7 @@ function PostEditForm() {
                 ref={imageInput}
               />
             </Form.Group>
+
             {errors?.image?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
@@ -158,4 +161,7 @@ function PostEditForm() {
   );
 }
 
-export default PostEditForm;
+export default StoryEditForm;
+
+
+
