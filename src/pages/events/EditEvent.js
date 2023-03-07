@@ -1,0 +1,162 @@
+import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory } from 'react-router-dom';
+import "react-datepicker/dist/react-datepicker.css";
+import {
+    Form,
+    Row,
+    Col,
+    Container,
+} from "react-bootstrap";
+import btnStyles from "../../styles/Button.module.css";
+import { axiosReq } from "../../api/axiosDefaults";
+
+
+const EditEvent = ({ match }) => {
+    const eventId = match.params.id;
+    const [title, setTitle] = useState('');
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
+    const [location, setLocation] = useState('');
+    const [description, setDescription] = useState('');
+    const currentUser = useCurrentUser();
+    const is_owner = currentUser?.username;
+    const history = useHistory();
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    useEffect(() => {
+        // Fetch the event data from the API
+        const fetchEvent = async () => {
+            try {
+                const response = await axiosReq.get(`/event/${eventId}/`);
+                const event = response.data;
+                setTitle(event.title);
+                setStartTime(new Date(event.start_time));
+                setEndTime(new Date(event.end_time));
+                setLocation(event.location);
+                setDescription(event.description);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+        fetchEvent();
+    }, [eventId]);
+
+    useEffect(() => {
+        // if form is submitted refresh the page
+        if (formSubmitted) {
+            window.location.reload();
+        }
+    }, [formSubmitted]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // Validate the form fields
+        if (!title || !startTime || !endTime || !location || !description) {
+            alert('Please fill out all the fields.');
+            return;
+        }
+        // Validate the time range
+        if (endTime < startTime) {
+            alert('Finishing date cannot be before starting date.');
+            return;
+        }
+
+        // Make a PUT request to API to update the event
+        try {
+            await axiosReq.put(`/event/${id}/`, {
+                owner: is_owner,
+                title: title,
+                start_time: startTime,
+                end_time: endTime,
+                location: location,
+                description: description
+            });
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        history.push('/events');
+        setFormSubmitted(true);
+    };
+
+    return (<Form onSubmit={handleSubmit}>
+        <Row>
+            <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+                <Container
+                    className={"justify-content-center"}
+                >
+                    <label>
+                        Name:
+                        <input
+                            type="text"
+                            value={currentUser?.username}
+                            readOnly
+                            className="form-control"
+                        />
+                    </label>
+                    <label>
+                        Title:
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Start Time:
+                        <DatePicker
+                            selected={startTime}
+                            onChange={(date) => setStartTime(date)}
+                            showTimeSelect
+                            timeFormat="HH:mm:ss"
+                            timeIntervals={15}
+                            dateFormat="yyyy-MM-dd HH:mm:ss"
+                            timeCaption="time"
+                            className="form-control"
+                        />
+                        End:
+                        <DatePicker
+                            selected={endTime}
+                            onChange={(date) => setEndTime(date)}
+                            showTimeSelect
+                            timeFormat="HH:mm:ss"
+                            timeIntervals={15}
+                            dateFormat="yyyy-MM-dd HH:mm:ss"
+                            timeCaption="time"
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Location:
+                        <input
+                            type="text"
+                            value={location}
+                            onChange={(event) => setLocation(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Description:
+                        <textarea
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                            className="form-control"
+                        />
+                    </label>
+                    <br />
+                    <button type="submit" className={btnStyles.btn}>
+                        Update Event
+                    </button>
+                </Container>
+            </Col>
+        </Row>
+
+    </Form>);
+};
+export default EditEvent;

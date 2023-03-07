@@ -61,20 +61,18 @@ function PostPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            <InfiniteScroll
-              children={comments.results.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  {...comment}
-                  setPost={setPost}
-                  setComments={setComments}
-                />
-              ))}
-              dataLength={comments.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
-            />
+            <div>
+              {comments.results
+                .filter((comment) => comment.post === parseInt(id))
+                .map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    {...comment}
+                    setPost={setPost}
+                    setComments={setComments}
+                  />
+                ))}
+            </div>
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (

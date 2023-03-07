@@ -25,6 +25,7 @@ import ShowFriends from "./pages/myfriends/ShowFriends";
 import NewsSportPage from "./pages/news/NewsSportPage";
 import styles from "./App.module.css";
 import NotFound from "./components/NotFound";
+import EditEvent from "./pages/events/EditEvent";
 
 
 
@@ -113,6 +114,13 @@ function App() {
             path="/events/create"
             render={() => (
               <CreateEvent />
+            )}
+          />
+          <Route
+            exact
+            path="/events/:id/edit"
+            render={() => (
+              <EditEvent />
             )}
           />
           <Route
