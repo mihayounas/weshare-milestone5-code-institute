@@ -1,162 +1,169 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-    Form,
-    Row,
-    Col,
-    Container,
-} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
+function EditEvent() {
+    const [event, setEvent] = useState({});
+    const [location, setLocation] = useState(event.location || "");
+    const [startTime, setStartTime] = useState(event.startTime || new Date());
+    const [endTime, setEndTime] = useState(event.endTime || new Date());
+    const [description, setDescription] = useState(event.description || "");
+    const [title, setTitle] = useState(event.title || "");
 
-const EditEvent = ({ match }) => {
-    const eventId = match.params.id;
-    const [title, setTitle] = useState('');
-    const [startTime, setStartTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
-    const [location, setLocation] = useState('');
-    const [description, setDescription] = useState('');
-    const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username;
+    const [errors, setErrors] = useState({});
+
     const history = useHistory();
-    const [formSubmitted, setFormSubmitted] = useState(false);
+    const { id } = useParams();
 
     useEffect(() => {
-        // Fetch the event data from the API
-        const fetchEvent = async () => {
+        const getEvent = async () => {
             try {
-                const response = await axiosReq.get(`/event/${eventId}/`);
-                const event = response.data;
-                setTitle(event.title);
-                setStartTime(new Date(event.start_time));
-                setEndTime(new Date(event.end_time));
-                setLocation(event.location);
-                setDescription(event.description);
+                const response = await axiosReq.get(`/event/${id}`);
+                setEvent(response.data);
+                setTitle(response.data.title || "");
+                setLocation(response.data.location || "");
+                setStartTime(response.data.startTime || "");
+                setEndTime(response.data.endTime || "");
+                setDescription(response.data.description || "");
             } catch (error) {
-                console.error('Error:', error);
+                console.log(error);
             }
         };
-        fetchEvent();
-    }, [eventId]);
+        getEvent();
+    }, [id]);
 
-    useEffect(() => {
-        // if form is submitted refresh the page
-        if (formSubmitted) {
-            window.location.reload();
-        }
-    }, [formSubmitted]);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setTitle(name === "title" ? value : title);
+        setStartTime(name === "startTime" ? value : startTime);
+        setEndTime(name === "endTime" ? value : endTime);
+        setLocation(name === "location" ? value : location);
+        setDescription(name === "description" ? value : description);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Validate the form fields
-        if (!title || !startTime || !endTime || !location || !description) {
-            alert('Please fill out all the fields.');
-            return;
-        }
-        // Validate the time range
-        if (endTime < startTime) {
-            alert('Finishing date cannot be before starting date.');
-            return;
-        }
+        const formData = new FormData();
 
-        // Make a PUT request to API to update the event
+        formData.append("title", title);
+        formData.append("startTime", startTime);
+        formData.append("endTime", endTime);
+        formData.append("location", location);
+        formData.append("description", description);
+
         try {
-            await axiosReq.put(`/event/${id}/`, {
-                owner: is_owner,
-                title: title,
-                start_time: startTime,
-                end_time: endTime,
-                location: location,
-                description: description
-            });
-
-        } catch (error) {
-            console.error('Error:', error);
+            await axiosReq.patch(`/event/${id}`, formData);
+            history.push(`/events`);
+        } catch (err) {
+            // console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
-        history.push('/events');
-        setFormSubmitted(true);
     };
 
-    return (<Form onSubmit={handleSubmit}>
-        <Row>
-            <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                <Container
-                    className={"justify-content-center"}
-                >
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            value={currentUser?.username}
-                            readOnly
-                            className="form-control"
-                        />
-                    </label>
-                    <label>
-                        Title:
-                        <input
-                            type="text"
-                            value={title}
-                            onChange={(event) => setTitle(event.target.value)}
-                            className="form-control"
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Start Time:
-                        <DatePicker
-                            selected={startTime}
-                            onChange={(date) => setStartTime(date)}
-                            showTimeSelect
-                            timeFormat="HH:mm:ss"
-                            timeIntervals={15}
-                            dateFormat="yyyy-MM-dd HH:mm:ss"
-                            timeCaption="time"
-                            className="form-control"
-                        />
-                        End:
-                        <DatePicker
-                            selected={endTime}
-                            onChange={(date) => setEndTime(date)}
-                            showTimeSelect
-                            timeFormat="HH:mm:ss"
-                            timeIntervals={15}
-                            dateFormat="yyyy-MM-dd HH:mm:ss"
-                            timeCaption="time"
-                            className="form-control"
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Location:
-                        <input
-                            type="text"
-                            value={location}
-                            onChange={(event) => setLocation(event.target.value)}
-                            className="form-control"
-                        />
-                    </label>
-                    <br />
-                    <label>
-                        Description:
-                        <textarea
-                            value={description}
-                            onChange={(event) => setDescription(event.target.value)}
-                            className="form-control"
-                        />
-                    </label>
-                    <br />
-                    <button type="submit" className={btnStyles.btn}>
-                        Update Event
-                    </button>
-                </Container>
-            </Col>
-        </Row>
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Row>
+                <Col className="d-none d-md-block p-0 p-md-2">
+                    <Container className={appStyles.Content}>
+                        <div className="text-center">
+                            <Form.Group>
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="title"
+                                    value={title}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
 
-    </Form>);
-};
+                            <Form.Group>
+                                <Form.Label>Start Time:</Form.Label>
+                                <br />
+                                <DatePicker
+                                    selected={startTime}
+                                    onChange={(date) => setStartTime(date)}
+                                    showTimeSelect
+                                    timeFormat="HH:mm:ss"
+                                    timeIntervals={15}
+                                    dateFormat="yyyy-MM-dd HH:mm:ss"
+                                    timeCaption="time"
+                                    className="form-control"
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>End Time:</Form.Label>
+                                <br />
+                                <DatePicker
+                                    selected={endTime}
+                                    onChange={(date) => setEndTime(date)}
+                                    showTimeSelect
+                                    timeFormat="HH:mm:ss"
+                                    timeIntervals={15}
+                                    dateFormat="yyyy-MM-dd HH:mm:ss"
+                                    timeCaption="time"
+                                    className="form-control"
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="location"
+                                    value={location}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Description</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="description"
+                                    value={description}
+                                    onChange={handleChange}
+                                />
+                            </Form.Group>
+                            {errors?.content?.map((message, idx) => (
+                                <Alert variant="warning" key={idx}>
+                                    {message}
+                                </Alert>
+                            ))}
+
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                onClick={() => history.goBack()}
+                            >
+                                cancel
+                            </Button>
+                            <Button
+                                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                                type="submit"
+                            >
+                                save
+                            </Button>
+                        </div>
+                    </Container>
+                </Col>
+            </Row>
+        </Form>
+    );
+}
+
 export default EditEvent;
