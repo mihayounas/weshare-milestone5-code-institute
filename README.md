@@ -30,11 +30,17 @@
 
 * The major goal is to prove  a high level of expertise in React and connected it to backend Django Rest FrameWork.
 * Real-world social media application that provides a full experience of what a social media app.
-* User Registration.
-* Creating and editing posts.
-* Commenting.
-* Liking.
-* Following other users.
+1. User Registration: This feature would allow users to create accounts on the social media app by providing basic information such as name, email address, and password. This would typically involve creating a registration form and using Django Rest Framework to handle user authentication and account creation.
+
+2. Creating and Editing Posts: Users should be able to create new posts, upload images and videos, and add captions or other metadata. They should also be able to edit or delete their own posts if they choose. This feature would likely involve using React to create a user interface for creating and editing posts, and using Django Rest Framework to handle the backend logic for creating, updating, and deleting posts.
+
+3. Commenting: Users should be able to leave comments on posts created by other users. This feature would involve creating a comment form in React and using Django Rest Framework to handle the backend logic for adding, editing, and deleting comments.
+
+4. Liking: Users should be able to "like" posts created by other users. This feature would involve creating a "like" button in React and using Django Rest Framework to handle the backend logic for tracking likes and displaying them on posts.
+
+5. Following Other Users: Users should be able to follow other users on the app to see their posts in their feed. This feature would involve using React to create a user interface for finding and following other users, and using Django Rest Framework to handle the backend logic for tracking followers and displaying posts in the user's feed.
+
+6. Events: Adding an events feature to the social media app would allow users to create and join events such as parties, meetups, or other gatherings.
 
 # UX
 
@@ -56,6 +62,29 @@
 
 ![userstories](/images/us2.png)
 ![userstories](/images/us3.png)
+
+# Epics: 
+
+* Initial Setup
+This Epic involves the initial setup of the React application and its dependencies in order to kickstart the development process for coding features.
+
+* Post Creation and Management
+This Epic focuses on the creation of the front-end components for the management of posts in the application. This feature will enable users to interact with the backend API through the user interface and perform actions such as creating, reading, updating, and deleting their own posts.
+
+* Comment Creation and Management
+This Epic focuses on the creation of the front-end components for the management of comments on posts. This feature will enable users to interact with the backend API through the user interface and add comments on posts.
+
+* User Profile Management
+
+This Epic focuses on the creation of the front-end components for the management of user profiles. This feature will enable users to interact with the backend API through the user interface to manage their own profiles.
+
+* Follower Management
+
+As a social networking platform, we want to provide our users with an intuitive and seamless way to manage their followers. This Epic will focus on creating the front-end components that enable users to interact with the backend API through the user interface, to manage their followers.
+
+* Story Management
+
+As a social networking platform, we want to provide our users with an intuitive and seamless way to manage their stories. This Epic will focus on creating the front-end components that enable users to interact with the backend API through the user interface, to manage their stories.
 
 # User Improvement
 
